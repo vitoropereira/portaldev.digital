@@ -7,7 +7,6 @@
 
 # testing
 /coverage
-/compare
 
 # next.js
 /.next/
@@ -33,10 +32,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# post build
-/public/*.xml
-/public/images
-
-# cache
-/.cache
