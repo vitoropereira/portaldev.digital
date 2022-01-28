@@ -1,58 +1,62 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { stripe } from "../services/stripe";
-import { SubscribeButton } from "../components/SubscribeButton";
-
-import styles from './home.module.scss'
 
 interface HomeProps {
   product: {
     priceId: string;
-    amount: number
-  }
+    amount: number;
+  };
 }
 
 export default function Home({ product }: HomeProps) {
   return (
     <>
-      <Head >
-        <title>Home | vop.news</title>
+      <Head>
+        <title>Home | portal dev</title>
       </Head>
-      <main className={styles.contentContainer}>
-        <section className={styles.hero}>
-          <span>👏 Hey, welcome</span>
-          <h1>News about the <span>React</span> wold.</h1>
+      <div className="container mx-auto">
+        <div className="row">
+          <div className="col-md-6 mx-auto my-auto">
+            <span className="text-lg md:text-2xl">👏 Olá, bem vindo!</span>
+            <h1>
+              Blog do <span className="primary">portal dev</span>.
+            </h1>
 
-          <p>
-            Get access to all the publications <br />
-            <span>for {product.amount} month</span>
-          </p>
-          <SubscribeButton priceId={product.priceId} />
-        </section>
-
-        <img src="/images/avatar.svg" alt="Girl coding" />
-      </main>
+            <p>
+              Do básico ao avançado na programação você encontrará por aqui.
+            </p>
+          </div>
+          <div className="col-md-6 mx-auto my-auto">
+            <img
+              className="mx-auto flex justify-center"
+              src="/images/avatar.svg"
+              alt="Girl coding"
+            />
+          </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const price = await stripe.prices.retrieve('price_1IerWTCuOWI61DOsubMYaA1x', {
-    expand: ['product']
-  })
+  const price = await stripe.prices.retrieve("price_1IerWTCuOWI61DOsubMYaA1x", {
+    expand: ["product"],
+  });
 
   const product = {
     priceId: price.id,
-    amount: new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
+    amount: new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
     }).format(price.unit_amount / 100),
-  }
+  };
 
   return {
     props: {
-      product
+      product,
     },
     revalidate: 60 * 60 * 24, // 24 hours
-  }
-}
+  };
+};
