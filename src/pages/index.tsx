@@ -15,7 +15,7 @@ export default function Home({ product }: HomeProps) {
       <Head>
         <title>Home | portal dev</title>
       </Head>
-      <div className="container mx-auto">
+      <div className="container mx-auto my-2">
         <div className="row">
           <div className="col-md-6 mx-auto my-auto">
             <span className="text-lg md:text-2xl">👏 Olá, bem vindo!</span>
@@ -29,9 +29,12 @@ export default function Home({ product }: HomeProps) {
           </div>
           <div className="col-md-6 mx-auto my-auto">
             <img
-              className="mx-auto flex justify-center"
+              className="mx-auto flex align-middle justify-center img-fluid"
               src="/images/avatar.svg"
               alt="Girl coding"
+              style={{
+                maxWidth: "230px",
+              }}
             />
           </div>
         </div>
