@@ -1,7 +1,10 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { Header } from "../components/Header";
 import { stripe } from "../services/stripe";
+
+import avatar from "../../public/images/avatar.svg";
 
 interface HomeProps {
   product: {
@@ -30,13 +33,10 @@ export default function Home({ product }: HomeProps) {
             </p>
           </div>
           <div className="col-md-6 mx-auto my-auto">
-            <img
+            <Image
               className="mx-auto flex align-middle justify-center img-fluid"
-              src="/images/avatar.svg"
+              src={avatar}
               alt="Girl coding"
-              style={{
-                maxWidth: "230px",
-              }}
             />
           </div>
         </div>

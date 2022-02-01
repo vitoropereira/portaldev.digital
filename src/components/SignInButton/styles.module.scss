@@ -1,19 +1,19 @@
 .sigInButton {
-  height       : 3rem;
+  height: 3rem;
   border-radius: 3rem;
-  background   : var(--gray-850);
-  border       : 0;
-  padding      : 0 1.5rem;
+  background: var(--gray-850);
+  border: 0;
+  padding: 0 1.5rem;
 
-  display        : flex;
-  align-items    : center;
+  display: flex;
+  align-items: center;
   justify-content: center;
 
-  color      : var(--white);
+  color: var(--white);
   font-weight: bold;
 
   svg {
-    width : 20px;
+    width: 20px;
     height: 20px;
   }
 
@@ -28,6 +28,6 @@
   transition: filter 0.2s;
 
   &:hover {
-    filter: brightness(0.8)
+    filter: brightness(0.8);
   }
 }

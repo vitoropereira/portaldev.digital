@@ -1,20 +1,17 @@
 import styles from "./styles.module.scss";
 import { ActiveLink } from "../ActiveLink";
 import { SignInButton } from "../SignInButton";
+import Image from "next/image";
+
+import logo from "../../../public/images/logo.png";
 
 export function Header() {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        <img
-          className="rounded"
-          src="/images/logo.png"
-          alt="portal dev"
-          style={{
-            maxWidth: "145px",
-            width: "100%",
-          }}
-        />
+        <span className={styles.image_logo}>
+          <Image src={logo} alt="portal dev" />
+        </span>
         <nav>
           <ActiveLink activeClassName={styles.active} href="/">
             <a>Home</a>
