@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: "14"
           cache: "yarn"
-      - run: yarn ci
+      - run: yarn run ci
       - run: yarn run lint
 
   lint-commits:
