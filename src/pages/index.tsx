@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import { Header } from "../components/Header";
 import { stripe } from "../services/stripe";
 
 interface HomeProps {
@@ -12,6 +13,7 @@ interface HomeProps {
 export default function Home({ product }: HomeProps) {
   return (
     <>
+      <Header />
       <Head>
         <title>Home | portal dev</title>
       </Head>

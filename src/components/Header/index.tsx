@@ -1,26 +1,31 @@
-import { SignInButton } from '../SignInButton'
-
-
-import styles from './styles.module.scss'
-import { ActiveLink } from '../ActiveLink';
+import styles from "./styles.module.scss";
+import { ActiveLink } from "../ActiveLink";
+import { SignInButton } from "../SignInButton";
 
 export function Header() {
-
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        <img src="/images/logo.svg" alt="vop.news" />
+        <img
+          className="rounded"
+          src="/images/logo.png"
+          alt="portal dev"
+          style={{
+            maxWidth: "145px",
+            width: "100%",
+          }}
+        />
         <nav>
-          <ActiveLink activeClassName={styles.active} href="/" >
-            <a >Home</a>
+          <ActiveLink activeClassName={styles.active} href="/">
+            <a>Home</a>
           </ActiveLink>
-          <ActiveLink activeClassName={styles.active} href="/posts" >
+          {/* <ActiveLink activeClassName={styles.active} href="/posts">
             <a>Post</a>
-          </ActiveLink>
+          </ActiveLink> */}
         </nav>
 
-        <SignInButton />
+        {/* <SignInButton /> */}
       </div>
     </header>
-  )
+  );
 }
