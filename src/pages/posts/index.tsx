@@ -54,7 +54,6 @@ export const getStaticProps: GetStaticProps = async () => {
       pageSize: 100,
     }
   );
-  console.log(response);
 
   const posts = response.results.map((post) => {
     return {
