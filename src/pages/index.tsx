@@ -1,12 +1,16 @@
 import Head from "next/head";
 import Image from "next/image";
+import Prismic from "@prismicio/client";
 import { Header } from "../components/Header";
 
 import avatar from "../../public/images/avatar.svg";
-import developer1 from "../../public/images/developer1.jpg";
-import developer2 from "../../public/images/developer2.jpg";
-import developer3 from "../../public/images/developer3.jpg";
 import Cards from "../components/Cards";
+
+import { getPrismicClient } from "../services/prismic";
+import { RichText } from "prismic-dom";
+import { useEffect, useState } from "react";
+
+import developerImage from "../../public/images/developer1.jpg";
 
 interface HomeProps {
   product: {
@@ -15,19 +19,88 @@ interface HomeProps {
   };
 }
 
-export default function Home({ product }: HomeProps) {
+interface PostProps {
+  uid: string;
+  tags: string[];
+  title: string;
+  paragraph: string;
+  image?: string;
+  width?: number;
+  height?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export default function Home() {
+  const [allPost, setAllPost] = useState<PostProps[]>([]);
+
+  async function handlePrismic() {
+    const prismic = getPrismicClient();
+    console.log(prismic);
+    const response = await prismic.query(
+      [Prismic.predicates.at("document.type", "posts")],
+      {
+        fetch: ["publication.title", "publication.content"],
+        pageSize: 100,
+      }
+    );
+
+    const posts = response.results.map((post) => {
+      return {
+        uid: post.uid,
+        slug: post.uid,
+        title: RichText.asText(post.data.title),
+        tags: post.tags,
+        paragraph:
+          post.data.content.find((content) => content.type === "paragraph")
+            ?.text ?? "",
+        image:
+          post.data.content
+            .find((content) => content.type === "image")
+            ?.url.split("?")[0] ?? developerImage,
+        width:
+          post.data.content.find((content) => content.type === "image")
+            ?.dimensions.width ?? 0,
+        height:
+          post.data.content.find((content) => content.type === "image")
+            ?.dimensions.height ?? 0,
+        createdAt: new Date(post.first_publication_date).toLocaleDateString(
+          "pt-BR",
+          {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          }
+        ),
+        updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+          "pt-BR",
+          {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          }
+        ),
+      };
+    });
+    console.log(posts);
+    setAllPost(posts);
+  }
+
+  useEffect(() => {
+    handlePrismic();
+  }, []);
   return (
     <>
       <Header />
       <Head>
         <title>Home | portal dev</title>
       </Head>
-      <div className="container mx-auto">
+      <div className="container mx-auto homeBackground">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="grid grid-rows-1 items-center mt-6 mx-auto">
+          <div className="items-center mt-6 mx-auto">
             <div>
-              <span className="text-4xl md:text-7xl">👏 Olá, bem vindo!</span>
-              <h1 className="text-2xl md:text-4xl pl-10 mt-3">
+              <span className="text-2xl md:text-4xl">👏 Olá, bem vindo!</span>
+              <h1 className="text-4xl md:text-7xl pl-10 mt-3">
                 Blog do <span className="text-rose-600">portal dev</span>.
               </h1>
               <p className="text-1xl md:text-2xl pl-10 mt-3">
@@ -43,68 +116,27 @@ export default function Home({ product }: HomeProps) {
             />
           </div>
         </div>
-      </div>
 
-      <div className="text-2xl md:text-4xl pl-10 mt-3">
-        <h1>Blog </h1>
-      </div>
-      <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-        <Cards
-          srcImage={developer2}
-          title="River"
-          paragraph="Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptatibus quia, Nonea! Maiores et perferendis eaque,
-              exercitationem praesentium nihil."
-          tags={[
-            "#photography",
-            " #travel",
-            "#summer",
-            "#photography",
-            " #travel",
-            "#summer",
-          ]}
-        />
-
-        <div className="rounded overflow-hidden shadow-lg">
-          <Image className="w-full" src={developer2} alt="River" />
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2"></div>
-            <p className="text-gray-700 text-base"></p>
-          </div>
-          <div className="px-6 pt-4 pb-2">
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #photography
-            </span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #travel
-            </span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #summer
-            </span>
-          </div>
+        <div className="text-2xl md:text-4xl pl-10 mt-3">
+          <h1>Posts </h1>
         </div>
-
-        <div className="rounded overflow-hidden shadow-lg">
-          <Image className="w-full" src={developer3} alt="Forest" />
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">Forest</div>
-            <p className="text-gray-700 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptatibus quia, Nonea! Maiores et perferendis eaque,
-              exercitationem praesentium nihil.
-            </p>
-          </div>
-          <div className="px-6 pt-4 pb-2">
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #photography
-            </span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #travel
-            </span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #fall
-            </span>
-          </div>
+        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+          {allPost.map((post) => {
+            console.log(post);
+            return (
+              <Cards
+                key={post.uid}
+                image={{
+                  src: post.image,
+                  height: post.height,
+                  width: post.width,
+                }}
+                title={post.title}
+                paragraph={post.paragraph}
+                tags={post.tags}
+              />
+            );
+          })}
         </div>
       </div>
     </>

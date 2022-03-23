@@ -25,7 +25,7 @@ export default function Post({ post }: PostProps) {
       </Head>
 
       <Header />
-      <main className={styles.container}>
+      {/* <main className={styles.container}>
         <article className={styles.post}>
           <h1>{post.title}</h1>
           <time>{post.updatedAt}</time>
@@ -34,7 +34,7 @@ export default function Post({ post }: PostProps) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
-      </main>
+      </main> */}
     </>
   );
 }
