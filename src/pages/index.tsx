@@ -11,6 +11,7 @@ import { RichText } from "prismic-dom";
 import { useEffect, useState } from "react";
 
 import developerImage from "../../public/images/developer1.jpg";
+import { GetStaticProps } from "next";
 
 interface HomeProps {
   product: {
@@ -19,7 +20,7 @@ interface HomeProps {
   };
 }
 
-interface PostProps {
+type Post = {
   uid: string;
   tags: string[];
   title: string;
@@ -29,66 +30,14 @@ interface PostProps {
   height?: number;
   createdAt: string;
   updatedAt: string;
+};
+
+interface PostsProps {
+  posts: Post[];
 }
 
-export default function Home() {
-  const [allPost, setAllPost] = useState<PostProps[]>([]);
-
-  async function handlePrismic() {
-    const prismic = getPrismicClient();
-    console.log(prismic);
-    const response = await prismic.query(
-      [Prismic.predicates.at("document.type", "posts")],
-      {
-        fetch: ["publication.title", "publication.content"],
-        pageSize: 100,
-      }
-    );
-
-    const posts = response.results.map((post) => {
-      return {
-        uid: post.uid,
-        slug: post.uid,
-        title: RichText.asText(post.data.title),
-        tags: post.tags,
-        paragraph:
-          post.data.content.find((content) => content.type === "paragraph")
-            ?.text ?? "",
-        image:
-          post.data.content
-            .find((content) => content.type === "image")
-            ?.url.split("?")[0] ?? developerImage,
-        width:
-          post.data.content.find((content) => content.type === "image")
-            ?.dimensions.width ?? 0,
-        height:
-          post.data.content.find((content) => content.type === "image")
-            ?.dimensions.height ?? 0,
-        createdAt: new Date(post.first_publication_date).toLocaleDateString(
-          "pt-BR",
-          {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          }
-        ),
-        updatedAt: new Date(post.last_publication_date).toLocaleDateString(
-          "pt-BR",
-          {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          }
-        ),
-      };
-    });
-    console.log(posts);
-    setAllPost(posts);
-  }
-
-  useEffect(() => {
-    handlePrismic();
-  }, []);
+export default function Home({ posts }: PostsProps) {
+  console.log(posts);
   return (
     <>
       <Header />
@@ -121,8 +70,7 @@ export default function Home() {
           <h1>Posts </h1>
         </div>
         <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-          {allPost.map((post) => {
-            console.log(post);
+          {posts.map((post) => {
             return (
               <Cards
                 key={post.uid}
@@ -142,3 +90,57 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient();
+
+  const response = await prismic.query(
+    [Prismic.predicates.at("document.type", "posts")],
+    {
+      fetch: ["publication.title", "publication.content"],
+      pageSize: 100,
+    }
+  );
+
+  const posts = response.results.map((post) => {
+    return {
+      uid: post.uid,
+      slug: post.uid,
+      title: RichText.asText(post.data.title),
+      tags: post.tags,
+      paragraph:
+        post.data.content.find((content) => content.type === "paragraph")
+          ?.text ?? "",
+      image:
+        post.data.content
+          .find((content) => content.type === "image")
+          ?.url.split("?")[0] ?? developerImage,
+      width:
+        post.data.content.find((content) => content.type === "image")
+          ?.dimensions.width ?? 0,
+      height:
+        post.data.content.find((content) => content.type === "image")
+          ?.dimensions.height ?? 0,
+      createdAt: new Date(post.first_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }
+      ),
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }
+      ),
+    };
+  });
+
+  return {
+    props: { posts },
+  };
+};
