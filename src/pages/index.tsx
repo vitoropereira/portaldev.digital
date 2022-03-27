@@ -10,6 +10,7 @@ import Cards from "../components/Cards";
 import { getPrismicClient } from "../services/prismic";
 import developerImage from "../../public/images/developer1.jpg";
 import { useEffect } from "react";
+import Navbar from "../components/Navbars";
 
 interface HomeProps {
   product: {
@@ -37,7 +38,7 @@ interface PostsProps {
 export default function Home({ posts }: PostsProps) {
   return (
     <>
-      <Header />
+      <Navbar />
       <Head>
         <title>Home | portal dev</title>
       </Head>
