@@ -14,21 +14,21 @@ const Cards = ({ image, title, paragraph, tags }: CardsProps) => {
   if (image.src === undefined) {
     setIsUndefined(false);
   }
-
+  console.log(title);
   return (
-    <div className="bg-neutral-700 rounded overflow-hidden shadow-lg ">
+    <div className=" max-h-full bg-neutral-900 rounded shadow-lg">
       {isUndefined && (
         <Image
-          className="w-full"
+          className="w-full max-h-12"
           src={image.src}
           width={image.width}
           height={image.height}
-          alt="Mountain"
+          alt={title}
         />
       )}
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{title}</div>
-        <p className=" text-base">{paragraph}</p>
+        <div className="font-bold text-2xl mb-2">{title}</div>
+        <p className="text-base">{paragraph}</p>
       </div>
       <div className="px-6 pt-4 pb-2">
         {tags.map((tag, index) => {

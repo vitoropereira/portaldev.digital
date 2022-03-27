@@ -1,17 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
+import { RichText } from "prismic-dom";
 import Prismic from "@prismicio/client";
-import { Header } from "../components/Header";
+import { GetStaticProps } from "next";
 
+import { Header } from "../components/Header";
 import avatar from "../../public/images/avatar.svg";
 import Cards from "../components/Cards";
-
 import { getPrismicClient } from "../services/prismic";
-import { RichText } from "prismic-dom";
-import { useEffect, useState } from "react";
-
 import developerImage from "../../public/images/developer1.jpg";
-import { GetStaticProps } from "next";
+import { useEffect } from "react";
 
 interface HomeProps {
   product: {
@@ -37,7 +35,6 @@ interface PostsProps {
 }
 
 export default function Home({ posts }: PostsProps) {
-  console.log(posts);
   return (
     <>
       <Header />
@@ -46,16 +43,14 @@ export default function Home({ posts }: PostsProps) {
       </Head>
       <div className="container mx-auto homeBackground">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="items-center mt-6 mx-auto">
-            <div>
-              <span className="text-2xl md:text-4xl">👏 Olá, bem vindo!</span>
-              <h1 className="text-4xl md:text-7xl pl-10 mt-3">
-                Blog do <span className="text-rose-600">portal dev</span>.
-              </h1>
-              <p className="text-1xl md:text-2xl pl-10 mt-3">
-                Do básico ao avançado na programação você encontrará por aqui.
-              </p>
-            </div>
+          <div className="items-center mt-6 flex flex-col justify-center">
+            <span className="text-2xl md:text-4xl">👏 Olá, bem vindo!</span>
+            <h1 className="text-4xl md:text-7xl pl-10 mt-3">
+              Blog do <span className="text-rose-600">portal dev</span>.
+            </h1>
+            <p className="text-1xl md:text-2xl pl-10 pr-5 mt-3">
+              Do básico ao avançado na programação você encontrará por aqui.
+            </p>
           </div>
           <div className="mx-auto py-4">
             <Image
@@ -65,7 +60,7 @@ export default function Home({ posts }: PostsProps) {
             />
           </div>
         </div>
-
+        <div className="border-b divide-white h-11"> </div>
         <div className="text-2xl md:text-4xl pl-10 mt-3">
           <h1>Posts </h1>
         </div>
@@ -142,5 +137,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { posts },
+    revalidate: 1,
   };
 };
