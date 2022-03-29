@@ -10,7 +10,7 @@ import Cards from "../components/Cards";
 import { getPrismicClient } from "../services/prismic";
 import developerImage from "../../public/images/developer1.jpg";
 import { useEffect } from "react";
-import Navbar from "../components/Navbars";
+import Navbar from "../components/Navbar";
 
 interface HomeProps {
   product: {

@@ -1,22 +1,30 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 
 import logo from "../../../public/images/logo.png";
 import symbol from "../../../public/images/symbol.png";
+import { useRouter } from "next/router";
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  // { name: "Posts", href: "#", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "Posts", href: "/posts", current: false },
   // { name: "Sobre Nós", href: "#", current: false },
 ];
 
 function classNames(...classes) {
+  console.log(classes.filter(Boolean).join(" "));
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
+  const { asPath } = useRouter();
+
+  navigation.map((item) => {
+    item.current = asPath === item.href;
+  });
+
   return (
     <Disclosure as="nav" className="bg-zinc-900">
       {({ open }) => (

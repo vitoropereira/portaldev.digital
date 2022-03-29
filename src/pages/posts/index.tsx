@@ -7,10 +7,17 @@ import { getPrismicClient } from "../../services/prismic";
 import styles from "./styles.module.scss";
 import { RichText } from "prismic-dom";
 import { Header } from "../../components/Header";
+import developerImage from "../../../public/images/developer1.jpg";
+import { useState } from "react";
+import Image from "next/image";
+import Navbar from "../../components/Navbar";
 
 type Post = {
   slug: string;
   title: string;
+  image?: string;
+  width?: number;
+  height?: number;
   excerpt: string;
   updatedAt: string;
 };
@@ -20,22 +27,36 @@ interface PostsProps {
 }
 
 export default function Posts({ posts }: PostsProps) {
+  const [isUndefined, setIsUndefined] = useState(true);
+
   return (
     <>
+      <Navbar />
       <Head>
-        <title>Post | vopnews</title>
+        <title>Home | portal dev</title>
       </Head>
-
-      <Header />
       <main className={styles.container}>
         <div className={styles.posts}>
           {posts.map((post) => (
             <Link href={`/posts/${post.slug}`}>
-              <a key={post.slug}>
-                <time>{post.updatedAt}</time>
-                <strong>{post.title}</strong>
-                <p>{post.excerpt}</p>
-              </a>
+              <div className="flex flex-row">
+                <div className="w-32 md:w-1/4 px-2 inline-block align-middle">
+                  {isUndefined && (
+                    <Image
+                      className="w-full max-h-6"
+                      src={post.image}
+                      width={post.width}
+                      height={post.height}
+                      alt={post.title}
+                    />
+                  )}
+                </div>
+                <a className="w-64" key={post.slug}>
+                  <time>{post.updatedAt}</time>
+                  <strong>{post.title}</strong>
+                  <p>{post.excerpt}</p>
+                </a>
+              </div>
             </Link>
           ))}
         </div>
@@ -62,6 +83,17 @@ export const getStaticProps: GetStaticProps = async () => {
       excerpt:
         post.data.content.find((content) => content.type === "paragraph")
           ?.text ?? "",
+      image:
+        post.data.content
+          .find((content) => content.type === "image")
+          ?.url.split("?")[0] ?? developerImage,
+      width:
+        post.data.content.find((content) => content.type === "image")
+          ?.dimensions.width ?? 0,
+      height:
+        post.data.content.find((content) => content.type === "image")
+          ?.dimensions.height ?? 0,
+
       updatedAt: new Date(post.last_publication_date).toLocaleDateString(
         "pt-BR",
         {
