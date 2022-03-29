@@ -51,7 +51,7 @@ export default function Posts({ posts }: PostsProps) {
                     />
                   )}
                 </div>
-                <a className="w-64" key={post.slug}>
+                <a className="w-64 md:w-full" key={post.slug}>
                   <time>{post.updatedAt}</time>
                   <strong>{post.title}</strong>
                   <p>{post.excerpt}</p>
