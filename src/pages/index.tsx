@@ -4,12 +4,10 @@ import { RichText } from "prismic-dom";
 import Prismic from "@prismicio/client";
 import { GetStaticProps } from "next";
 
-import { Header } from "../components/Header";
 import avatar from "../../public/images/avatar.svg";
 import Cards from "../components/Cards";
 import { getPrismicClient } from "../services/prismic";
 import developerImage from "../../public/images/developer1.jpg";
-import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 interface HomeProps {

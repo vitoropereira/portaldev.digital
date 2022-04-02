@@ -25,7 +25,7 @@ export default function Post({ post }: PostProps) {
       </Head>
 
       <Header />
-      {/* <main className={styles.container}>
+      <main className={styles.container}>
         <article className={styles.post}>
           <h1>{post.title}</h1>
           <time>{post.updatedAt}</time>
@@ -34,7 +34,7 @@ export default function Post({ post }: PostProps) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
-      </main> */}
+      </main>
     </>
   );
 }
@@ -43,22 +43,13 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   params,
 }) => {
-  // const session = await getSession({ req });
   const { slug } = params;
-  // console.log(session);
-  // if (!session?.activeSubscription) {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
 
   const prismic = getPrismicClient(req);
 
-  const response = await prismic.getByUID("publication", String(slug), {});
+  const response = await prismic.getByUID("posts", String(slug), {});
 
+  console.log(response);
   const post = {
     slug,
     title: RichText.asText(response.data.title),
@@ -72,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       }
     ),
   };
-  console.log(post);
+
   return {
     props: {
       post,
