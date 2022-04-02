@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import CardTags from "./CardTags";
 
