@@ -1,8 +1,7 @@
 import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/client";
 import Head from "next/head";
 import { RichText } from "prismic-dom";
-import { Header } from "../../components/Header";
+import Navbar from "../../components/Navbar";
 
 import { getPrismicClient } from "../../services/prismic";
 
@@ -20,11 +19,11 @@ interface PostProps {
 export default function Post({ post }: PostProps) {
   return (
     <>
+      <Navbar />
       <Head>
         <title>{post.title} | VopNews</title>
       </Head>
 
-      <Header />
       <main className={styles.container}>
         <article className={styles.post}>
           <h1>{post.title}</h1>

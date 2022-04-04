@@ -55,3 +55,7 @@ a {
 .homeBackground{
   background: var(--gray-900);
 }
+
+.cursorPointer{
+  cursor: pointer;
+}
