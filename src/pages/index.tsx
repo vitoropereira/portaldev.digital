@@ -64,21 +64,20 @@ export default function Home({ posts }: PostsProps) {
           <h1>Posts </h1>
         </div>
         <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-          {posts.map((post) => {
-            return (
-              <Cards
-                key={post.uid}
-                image={{
-                  src: post.image,
-                  height: post.height,
-                  width: post.width,
-                }}
-                title={post.title}
-                paragraph={post.paragraph}
-                tags={post.tags}
-              />
-            );
-          })}
+          {posts.map((post) => (
+            <Cards
+              key={post.uid}
+              image={{
+                src: post.image,
+                height: post.height,
+                width: post.width,
+              }}
+              title={post.title}
+              paragraph={post.paragraph}
+              tags={post.tags}
+              href={`/posts/${post.uid}`}
+            />
+          ))}
         </div>
       </div>
     </>

@@ -2,15 +2,14 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Prismic from "@prismicio/client";
 import Link from "next/link";
-
-import { getPrismicClient } from "../../services/prismic";
-import styles from "./styles.module.scss";
-import { RichText } from "prismic-dom";
-import { Header } from "../../components/Header";
-import developerImage from "../../../public/images/developer1.jpg";
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
+import { RichText } from "prismic-dom";
+
+import developerImage from "../../../public/images/developer1.jpg";
+import { getPrismicClient } from "../../services/prismic";
 import Navbar from "../../components/Navbar";
+import styles from "./styles.module.scss";
 
 type Post = {
   slug: string;
@@ -39,7 +38,7 @@ export default function Posts({ posts }: PostsProps) {
         <div className={styles.posts}>
           {posts.map((post) => (
             <Link href={`/posts/${post.slug}`}>
-              <div className="flex flex-row">
+              <div className="flex flex-row cursor-pointer">
                 <div className="w-32 md:w-1/4 px-2 inline-block align-middle">
                   {isUndefined && (
                     <Image
