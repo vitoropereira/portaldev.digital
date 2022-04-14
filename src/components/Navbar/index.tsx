@@ -14,7 +14,6 @@ const navigation = [
 ];
 
 function classNames(...classes) {
-  console.log(classes.filter(Boolean).join(" "));
   return classes.filter(Boolean).join(" ");
 }
 
