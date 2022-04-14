@@ -16,7 +16,6 @@ const Cards = ({ image, title, paragraph, tags, href }: CardsProps) => {
   if (image.src === undefined) {
     setIsUndefined(false);
   }
-  console.log(title);
   return (
     <Link href={href} passHref>
       <div className=" max-h-full bg-neutral-900 rounded shadow-lg cursorPointer">

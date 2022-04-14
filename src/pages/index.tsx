@@ -9,15 +9,30 @@ import Cards from "../components/Cards";
 import { getPrismicClient } from "../services/prismic";
 import developerImage from "../../public/images/developer1.jpg";
 import Navbar from "../components/Navbar";
+import VideosCards from "../components/VideosCards";
 
-interface HomeProps {
-  product: {
-    priceId: string;
-    amount: number;
-  };
-}
+export type VideoProps = {
+  embed_url: string;
+  author_name: string;
+  author_url: string;
+  thumbnail_url: string;
+  thumbnail_width: number;
+  thumbnail_height: number;
+  html: string;
+};
 
-type Post = {
+type VideosProps = {
+  uid: string;
+  tags: string[];
+  paragraph: string;
+  title: string;
+  video: VideoProps;
+  image?: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type PostProps = {
   uid: string;
   tags: string[];
   title: string;
@@ -30,10 +45,11 @@ type Post = {
 };
 
 interface PostsProps {
-  posts: Post[];
+  posts: PostProps[];
+  videos: VideosProps[];
 }
 
-export default function Home({ posts }: PostsProps) {
+export default function Home({ posts, videos }: PostsProps) {
   return (
     <>
       <Navbar />
@@ -79,6 +95,24 @@ export default function Home({ posts }: PostsProps) {
             />
           ))}
         </div>
+        <div className="border-b divide-white h-11"> </div>
+        <div className="text-2xl md:text-4xl pl-10 mt-3">
+          <h1>Vídeos </h1>
+        </div>
+        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
+          {videos.map((video) => {
+            return (
+              <VideosCards
+                key={video.uid}
+                video={video.video}
+                title={video.title}
+                paragraph={video.paragraph}
+                tags={video.tags}
+                href={`/videos/${video.uid}`}
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );
@@ -87,7 +121,7 @@ export default function Home({ posts }: PostsProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
-  const response = await prismic.query(
+  const postResponse = await prismic.query(
     [Prismic.predicates.at("document.type", "posts")],
     {
       fetch: ["publication.title", "publication.content"],
@@ -95,7 +129,15 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   );
 
-  const posts = response.results.map((post) => {
+  const videoResponse = await prismic.query(
+    [Prismic.predicates.at("document.type", "videos")],
+    {
+      fetch: ["publication.title", "publication.content"],
+      pageSize: 100,
+    }
+  );
+
+  const posts = postResponse.results.map((post) => {
     return {
       uid: post.uid,
       slug: post.uid,
@@ -133,8 +175,36 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   });
 
+  const videos = videoResponse.results.map((video) => {
+    return {
+      uid: video.uid,
+      slug: video.uid,
+      title: RichText.asText(video.data.title),
+      tags: video.tags,
+      video: video.data.videos,
+      paragraph:
+        video.data.resumo.find((content) => content.type === "paragraph")
+          ?.text ?? "",
+      createdAt: new Date(video.first_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }
+      ),
+      updatedAt: new Date(video.last_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }
+      ),
+    };
+  });
   return {
-    props: { posts },
+    props: { posts, videos },
     revalidate: 1,
   };
 };
