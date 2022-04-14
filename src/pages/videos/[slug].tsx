@@ -44,7 +44,7 @@ export default function Post({ post }: PostProps) {
           />
           <div className="w-96 flex flex-col mt-3">
             <h2 className="mb-3">Assista o vídeo.</h2>
-            <Link href={post.video.embed_url}>
+            <Link href={post.video.embed_url} passHref>
               <a target="_blank">
                 {isUndefined && (
                   <Image
