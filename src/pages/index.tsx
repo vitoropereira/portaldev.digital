@@ -100,18 +100,16 @@ export default function Home({ posts, videos }: PostsProps) {
           <h1>Vídeos </h1>
         </div>
         <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
-          {videos.map((video) => {
-            return (
-              <VideosCards
-                key={video.uid}
-                video={video.video}
-                title={video.title}
-                paragraph={video.paragraph}
-                tags={video.tags}
-                href={`/videos/${video.uid}`}
-              />
-            );
-          })}
+          {videos.map((video) => (
+            <VideosCards
+              key={video.uid}
+              video={video.video}
+              title={video.title}
+              paragraph={video.paragraph}
+              tags={video.tags}
+              href={`/videos/${video.uid}`}
+            />
+          ))}
         </div>
       </div>
     </>
