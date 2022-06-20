@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Posts", href: "/posts", current: false },
+  { name: "Mentoria", href: "/mentoria", current: false },
   // { name: "Sobre Nós", href: "#", current: false },
 ];
 
