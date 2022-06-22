@@ -15,8 +15,8 @@ export default async function (req, res) {
     host: "smtp-relay.sendinblue.com",
     port: 587,
     auth: {
-      user: "vop1234@hotmail.com",
-      pass: "AFj6TnN9V10Kvmwy",
+      user: process.env.SENDINBLUE_USER,
+      pass: process.env.SENDINBLUE_PASSWORD,
     },
   };
 
