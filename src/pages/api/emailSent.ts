@@ -42,6 +42,7 @@ export default async function (req, res) {
     if (err) {
       console.log("err");
       console.log(err);
+      throw new Error("E-mail não enviado. " + err);
     } else {
       console.log("info");
       console.log(info);
