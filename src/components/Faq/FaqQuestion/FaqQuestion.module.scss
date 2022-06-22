@@ -3,7 +3,7 @@
 }
 
 .questionHeader {
-    padding: 2rem 3rem;
+    padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
     background-color: rgba(17, 24, 39, 1);
@@ -13,10 +13,12 @@
 .questionText {
     padding-left: 16px;
     margin-right: auto;
+    font-size: 16px;
 }
 
 .answerContainer {
     margin-top: 12px;
+    font-size: 16px;
 }
 
 .collapsed {
