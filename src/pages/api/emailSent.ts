@@ -46,6 +46,7 @@ export default async function (req, res) {
     } else {
       console.log("info");
       console.log(info);
+      throw new Error("E-mail enviado. " + info);
     }
   });
 
