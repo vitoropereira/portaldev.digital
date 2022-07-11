@@ -32,19 +32,25 @@ export default function Mentoring() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((res) => {
-      console.log("Response received");
-      if (res.status === 200) {
-        setName("");
-        setEmail("");
-        setMessage("");
-        setRepository("");
-        setRepositoryHasBeenSent(true);
-      } else {
-        alert("Error sending email");
-      }
-      setIsLoading(false);
-    });
+    })
+      .then((res) => {
+        console.log("Response received");
+        if (res.status === 200) {
+          setName("");
+          setEmail("");
+          setMessage("");
+          setRepository("");
+          setRepositoryHasBeenSent(true);
+        } else {
+          alert("Error ao enviar a o email. Tente novamente mais tarde.");
+          console.log(res);
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   };
 
   return (
