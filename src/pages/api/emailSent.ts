@@ -8,7 +8,7 @@ interface SubmitRequest {
   repository: string;
 }
 
-export default function (req, res) {
+export default async function (req, res) {
   const { name, email, message, repository } = req.body as SubmitRequest;
 
   const smtpConfig: SMTPTransport.Options = {
@@ -58,7 +58,7 @@ export default function (req, res) {
     ].join("\n"),
   };
 
-  transporter.sendMail(mailData1, function (err, info) {
+  await transporter.sendMail(mailData1, function (err, info) {
     if (err) {
       console.log("err");
       console.log(err);
@@ -68,7 +68,7 @@ export default function (req, res) {
     }
   });
 
-  transporter.sendMail(mailData2, function (err, info) {
+  await transporter.sendMail(mailData2, function (err, info) {
     if (err) {
       console.log("err");
       console.log(err);
