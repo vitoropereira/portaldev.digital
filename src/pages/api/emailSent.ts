@@ -24,7 +24,7 @@ export default async function (req, res) {
 
   const mailData = {
     from: "portaldev@portaldev.digital",
-    to: "vop1234@hotmail.com; biacamille2019@gmail.com",
+    to: `vop1234@hotmail.com; biacamille2019@gmail.com; ${email};`,
     subject: `MENTORIA PDEV | DE: ${name}`,
     text: message,
     html: [
