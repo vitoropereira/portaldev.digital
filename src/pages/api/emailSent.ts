@@ -12,7 +12,7 @@ export default async function (req, res) {
   const { name, email, message, repository } = req.body as SubmitRequest;
 
   const smtpConfig: SMTPTransport.Options = {
-    host: "smtp-relay.sendinblue.com",
+    host: "smtp.mandrillapp.com",
     port: 587,
     auth: {
       user: process.env.SENDINBLUE_USER,
@@ -62,6 +62,7 @@ export default async function (req, res) {
     if (err) {
       console.log("err");
       console.log(err);
+      return res.status(401).json({ message: "Email2 não enviado!" });
     } else {
       console.log("info");
       console.log(info);
@@ -72,11 +73,12 @@ export default async function (req, res) {
     if (err) {
       console.log("err");
       console.log(err);
+      return res.status(401).json({ message: "Email2 não enviado!" });
     } else {
       console.log("info");
       console.log(info);
     }
   });
 
-  return res.status(200).json({ message: "Email enviado com sucesso!" });
+  // return res.status(200).json({ message: "Email enviado com sucesso!" });
 }
