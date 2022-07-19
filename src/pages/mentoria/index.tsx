@@ -35,6 +35,7 @@ export default function Mentoring() {
     })
       .then((res) => {
         console.log("Response received");
+        console.log(res);
         if (res.status === 200) {
           setName("");
           setEmail("");

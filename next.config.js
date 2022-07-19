@@ -1,6 +1,6 @@
 // next.config.js
 module.exports = {
-  images: {
-    domains: ["images.prismic.io", "i.ytimg.com"],
-  },
+    images: {
+        domains: ["images.prismic.io", "i.ytimg.com", "smtp.mandrillapp.com"],
+    },
 };
