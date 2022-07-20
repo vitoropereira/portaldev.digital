@@ -66,7 +66,6 @@ export default async function (req, res) {
     } else {
       console.log("info");
       console.log(info);
-      return res.status(200).json({ message: "Email enviado com sucesso!" });
     }
   });
 
@@ -78,8 +77,8 @@ export default async function (req, res) {
     } else {
       console.log("info");
       console.log(info);
-      return res.status(200).json({ message: "Email enviado com sucesso!" });
     }
   });
 
+  return res.status(200).json({ message: "Email enviado com sucesso!" });
 }
