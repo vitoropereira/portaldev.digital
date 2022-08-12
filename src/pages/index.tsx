@@ -11,6 +11,7 @@ import developerImage from "../../public/images/developer1.jpg";
 import Navbar from "../components/Navbar";
 import VideosCards from "../components/VideosCards";
 import { useEffect } from "react";
+import { Widget } from "../components/Widget";
 
 export type VideoProps = {
   embed_url: string;
@@ -113,6 +114,7 @@ export default function Home({ posts, videos }: PostsProps) {
             />
           ))}
         </div>
+      <Widget />
       </div>
     </>
   );
