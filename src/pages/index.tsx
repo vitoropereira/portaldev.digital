@@ -10,6 +10,7 @@ import { getPrismicClient } from "../services/prismic";
 import developerImage from "../../public/images/developer1.jpg";
 import Navbar from "../components/Navbar";
 import VideosCards from "../components/VideosCards";
+import { useEffect } from "react";
 
 export type VideoProps = {
   embed_url: string;
@@ -50,6 +51,7 @@ interface PostsProps {
 }
 
 export default function Home({ posts, videos }: PostsProps) {
+
   return (
     <>
       <Navbar />
