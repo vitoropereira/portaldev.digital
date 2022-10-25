@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowLeft } from "phosphor-react";
 import { CLoseButton } from "../CloseButton";
 
@@ -21,7 +22,7 @@ export function Header({ title, imagem, onRestartFeedback }: HeaderProps) {
       )}
 
       <span className="text-xl leading-6 flex items-center gap-2">
-        {imagem && <img className="w-6 h-6" src={imagem} alt={title} />}
+        {imagem && <Image className="w-6 h-6" src={imagem} alt={title} />}
         {title}
       </span>
       <CLoseButton />
