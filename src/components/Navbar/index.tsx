@@ -46,8 +46,7 @@ export default function Navbar() {
                 <div className="flex-shrink-0 flex items-center">
                   <div className="block lg:hidden w-auto item-center justify-center">
                     <Image
-                      width="45px"
-                      height="45px"
+                      className="w-11 h-11"
                       src={symbol}
                       alt="portal dev"
                     />
