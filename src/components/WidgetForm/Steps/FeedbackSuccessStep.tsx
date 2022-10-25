@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Header } from "../Header";
 
 interface FeedbackSuccessStepProps {
@@ -12,7 +13,10 @@ export function FeedBackSuccessStep({
       <Header />
 
       <div className="flex flex-col items-center py-10 w-[384px] ">
-        <img src="images/success.svg" alt="Imagem de um balão de pensamento" />
+        <Image
+          src="images/success.svg"
+          alt="Imagem de um balão de pensamento"
+        />
 
         <span className="text-xl mt-2">Agradecemos pelo feedback!</span>
 
