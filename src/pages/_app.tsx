@@ -1,6 +1,7 @@
 import "./styles/tailwind.css";
 import { AppProps } from "next/app";
 import { Provider as NextAuthProvider } from "next-auth/client";
+import { Analytics } from "@vercel/analytics/react";
 
 import "./styles/global.css";
 
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <Component {...pageProps} />
+      <Analytics />
     </>
     // </NextAuthProvider>
   );

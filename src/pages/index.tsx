@@ -52,7 +52,6 @@ interface PostsProps {
 }
 
 export default function Home({ posts, videos }: PostsProps) {
-
   return (
     <>
       <Navbar />
@@ -95,6 +94,7 @@ export default function Home({ posts, videos }: PostsProps) {
               paragraph={post.paragraph}
               tags={post.tags}
               href={`/posts/${post.uid}`}
+              updatedAt={post.updatedAt}
             />
           ))}
         </div>
@@ -114,7 +114,7 @@ export default function Home({ posts, videos }: PostsProps) {
             />
           ))}
         </div>
-      <Widget />
+        <Widget />
       </div>
     </>
   );
