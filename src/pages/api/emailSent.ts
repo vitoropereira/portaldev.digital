@@ -12,11 +12,11 @@ export default async function (req, res) {
   const { name, email, message, repository } = req.body as SubmitRequest;
 
   const smtpConfig: SMTPTransport.Options = {
-    host: "smtp-relay.sendinblue.com",
+    host: "smtp.sendgrid.net",
     port: 587,
     auth: {
-      user: process.env.SENDINBLUE_USER,
-      pass: process.env.SENDINBLUE_PASSWORD,
+      user: process.env.SENDGRID_USERNAME,
+      pass: process.env.SENDGRID_KEY,
     },
   };
 
