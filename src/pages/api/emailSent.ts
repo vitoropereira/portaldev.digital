@@ -12,11 +12,11 @@ export default async function (req, res) {
   const { name, email, message, repository } = req.body as SubmitRequest;
 
   const smtpConfig: SMTPTransport.Options = {
-    host: "smtp.sendgrid.net",
+    host: "smtp.gmail.com",
     port: 587,
     auth: {
-      user: process.env.SENDGRID_USERNAME,
-      pass: process.env.SENDGRID_KEY,
+      user: process.env.GMAIL_USERNAME,
+      pass: process.env.GMAIL_KEY,
     },
   };
 
@@ -66,6 +66,7 @@ export default async function (req, res) {
     } else {
       console.log("info");
       console.log(info);
+      return res.status(401).json({ message: "Email1 não enviado!" });
     }
   });
 
