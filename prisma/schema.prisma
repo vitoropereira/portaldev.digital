@@ -1,13 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
-}
-
-generator erd {
-  provider = "prisma-erd-generator"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -20,6 +17,8 @@ model Pool {
 
   participants Participant[]
   owner        User?         @relation(fields: [ownerId], references: [id])
+
+  @@map("pools")
 }
 
 model Participant {
@@ -32,6 +31,7 @@ model Participant {
   pool    Pool    @relation(fields: [poolId], references: [id])
 
   @@unique([userId, poolId])
+  @@map("participants")
 }
 
 model User {
@@ -44,6 +44,8 @@ model User {
 
   participantingAt Participant[]
   ownPools         Pool[]
+
+  @@map("users")
 }
 
 model Game {
@@ -54,6 +56,8 @@ model Game {
   secondTeamCountryCode String
 
   guesses Guess[]
+
+  @@map("games")
 }
 
 model Guess {
@@ -69,4 +73,5 @@ model Guess {
   game        Game        @relation(fields: [gameId], references: [id])
 
   @@unique([participantId, gameId])
+  @@map("guesses")
 }

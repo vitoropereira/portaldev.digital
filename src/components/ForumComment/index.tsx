@@ -52,7 +52,7 @@ export function ForumComment({
 
   return (
     <div className={styles.comment}>
-      <Avatar hasBorder={false} src={author.avatarUrl} />
+      <Avatar hasBorder={false} alt="Imagem de Perfil" src={author.avatarUrl} />
 
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>

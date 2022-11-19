@@ -101,7 +101,7 @@ export function ForumPost({ author, content, publishedAt }: ForumPostProps) {
     <article className={styles.forumPost}>
       <header>
         <div className={styles.author}>
-          <Avatar src={author.avatarUrl} />
+          <Avatar src={author.avatarUrl} alt="Imagem de Perfil" />
           <div className={styles.authorInfo}>
             <strong>{author.nome}</strong>
             <span>{author.role}</span>
