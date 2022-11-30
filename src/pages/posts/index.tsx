@@ -1,7 +1,5 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
 import Navbar from "../../components/Navbar";

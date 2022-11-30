@@ -4,13 +4,11 @@ import Image from "next/image";
 import { api } from "../../lib/api";
 
 import appPreviewImg from "../../assets/cellPhones.png";
-import logoImage from "../../assets/logo.svg";
 import usersAvatarExampleImg from "../../assets/users-avatar-example.png";
 import iconCheckImg from "../../assets/icon-check.svg";
 import Navbar from "../../components/Navbar";
 import { SignInButton } from "../../components/SignInButton";
 import { useSession } from "next-auth/react";
-import { getToken } from "next-auth/jwt";
 import { Button } from "../../components/Button";
 import { useRouter } from "next/router";
 
@@ -31,9 +29,12 @@ interface HomeProps {
   usersCount: number;
 }
 
-export default function Home({ poolCount, guessCount, usersCount }: HomeProps) {
+export default function Home() {
   const [poolTitle, setPoolTitle] = useState("");
   const [poolDescription, setPoolDescription] = useState("");
+  const [poolCount, setPoolCount] = useState(0);
+  const [guessCount, setGuessCount] = useState(0);
+  const [usersCount, setUsersCount] = useState(0);
 
   const { data: session } = useSession();
   const route = useRouter();
@@ -64,6 +65,23 @@ export default function Home({ poolCount, guessCount, usersCount }: HomeProps) {
   function handleGoPageBoloes() {
     route.push("/bolao/pools");
   }
+
+  async function getAllCount() {
+    const [poolCountResponse, guessCountResponse, usersCountResponse] =
+      await Promise.all([
+        api.get("pools/count"),
+        api.get("guesses/count"),
+        api.get("users/count"),
+      ]);
+
+    setPoolCount(poolCountResponse.data.count);
+    setGuessCount(guessCountResponse.data.count);
+    setUsersCount(usersCountResponse.data.count);
+  }
+
+  useEffect(() => {
+    getAllCount();
+  }, [poolCount, guessCount, usersCount]);
 
   return (
     <>
@@ -141,22 +159,3 @@ export default function Home({ poolCount, guessCount, usersCount }: HomeProps) {
     </>
   );
 }
-
-export const getStaticProps = async () => {
-  console.log("entre");
-  const [poolCountResponse, guessCountResponse, usersCountResponse] =
-    await Promise.all([
-      api.get("pools/count"),
-      api.get("guesses/count"),
-      api.get("users/count"),
-    ]);
-
-  return {
-    props: {
-      poolCount: poolCountResponse.data.count,
-      guessCount: guessCountResponse.data.count,
-      usersCount: usersCountResponse.data.count,
-    },
-    revalidate: 10 * 60, //10 minutos
-  };
-};
