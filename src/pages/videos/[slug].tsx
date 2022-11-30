@@ -2,12 +2,9 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { RichText } from "prismic-dom";
 import { useState } from "react";
 import { VideoProps } from "..";
 import Navbar from "../../components/Navbar";
-
-import { getPrismicClient } from "../../services/prismic";
 
 import styles from "./post.module.scss";
 
@@ -69,26 +66,22 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const { slug } = params;
 
-  const prismic = getPrismicClient(req);
+  // const post = {
+  //   slug,
+  //   title: RichText.asText(response.data.title),
+  //   content: RichText.asHtml(response.data.resumo),
+  //   video: response.data.videos,
+  //   updatedAt: new Date(response.last_publication_date).toLocaleDateString(
+  //     "pt-BR",
+  //     {
+  //       day: "2-digit",
+  //       month: "long",
+  //       year: "numeric",
+  //     }
+  //   ),
+  // };
 
-  const response = await prismic.getByUID("videos", String(slug), {});
-
-  const post = {
-    slug,
-    title: RichText.asText(response.data.title),
-    content: RichText.asHtml(response.data.resumo),
-    video: response.data.videos,
-    updatedAt: new Date(response.last_publication_date).toLocaleDateString(
-      "pt-BR",
-      {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }
-    ),
-  };
-  console.log(post);
   return {
-    props: { post },
+    props: { post: slug },
   };
 };

@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { RichText } from "prismic-dom";
 import Navbar from "../../components/Navbar";
 
 import styles from "./post.module.scss";

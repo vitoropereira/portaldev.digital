@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { RichText } from "prismic-dom";
 import { useEffect, useState } from "react";
 import { EmptyMyPoolList } from "../../../../components/EmptyMyPoolList";
 import { Guesses } from "../../../../components/Guesses";

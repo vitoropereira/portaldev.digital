@@ -1,15 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
-import { RichText } from "prismic-dom";
-import Prismic from "@prismicio/client";
-import { GetStaticProps } from "next";
 
 import avatar from "../../public/images/avatar.svg";
-import Cards from "../components/Cards";
-import developerImage from "../../public/images/developer1.jpg";
 import Navbar from "../components/Navbar";
-import VideosCards from "../components/VideosCards";
-import { useEffect } from "react";
 import { Widget } from "../components/Widget";
 
 export type VideoProps = {
@@ -130,7 +123,7 @@ export default function Home() {
 //     }
 //   );
 
-//   const videoResponse = await prismic.query(
+//   const videoResponse = await .query(
 //     [Prismic.predicates.at("document.type", "videos")],
 //     {
 //       fetch: ["publication.title", "publication.content"],
