@@ -1,17 +1,14 @@
 import { FaUserAlt } from "react-icons/fa";
-import { ActiveLink } from "../ActiveLink";
-import { FiX } from "react-icons/fi";
-import { signIn, signOut, useSession } from "next-auth/client";
-
-import styles from "./styles.module.scss";
+import Link from "next/link";
 
 export function SignInButton() {
   return (
-    <div className={styles.sigInButton}>
-      <FaUserAlt color="#04d361" />
-      <ActiveLink activeClassName={styles.active} href="/singIn">
-        <a>Fazer login</a>
-      </ActiveLink>
-    </div>
+    <Link
+      className="h-12 rounded bg-gray-800 border border-gray-600 text-sm text-gray-100 px-6 flex justify-center items-center font-bold hover: filter"
+      href="/login"
+    >
+      <FaUserAlt className="w-5 h-5 mr-4 text-ignite-500" />
+      <span>Fazer login</span>
+    </Link>
   );
 }

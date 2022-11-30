@@ -5,6 +5,6 @@ export default async function userRouts(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const count = await prisma.user.count();
+  const count = await prisma.guess.count();
   return res.status(200).send({ count });
 }
