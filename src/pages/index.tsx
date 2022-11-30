@@ -73,39 +73,12 @@ export default function Home() {
         <div className="text-2xl md:text-4xl pl-10 mt-3">
           <h1>Posts </h1>
         </div>
-        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-          {/* {posts.map((post) => (
-            <Cards
-              key={post.uid}
-              image={{
-                src: post.image,
-                height: post.height,
-                width: post.width,
-              }}
-              title={post.title}
-              paragraph={post.paragraph}
-              tags={post.tags}
-              href={`/posts/${post.uid}`}
-              updatedAt={post.updatedAt}
-            />
-          ))} */}
-        </div>
+        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5"></div>
         <div className="border-b divide-white h-11"> </div>
         <div className="text-2xl md:text-4xl pl-10 mt-3">
           <h1>Vídeos </h1>
         </div>
-        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
-          {/* {videos.map((video) => (
-            <VideosCards
-              key={video.uid}
-              video={video.video}
-              title={video.title}
-              paragraph={video.paragraph}
-              tags={video.tags}
-              href={`/videos/${video.uid}`}
-            />
-          ))} */}
-        </div>
+        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5"></div>
         <Widget />
       </div>
     </>
