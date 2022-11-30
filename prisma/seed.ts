@@ -7,7 +7,7 @@ async function main() {
     data: {
       name: "John Doe",
       email: "john.doe@gmail.com",
-      avatarUrl: "http://github.com/vitoropereira.png",
+      image: "http://github.com/vitoropereira.png",
     },
   });
 
@@ -36,8 +36,70 @@ async function main() {
   await prisma.game.create({
     data: {
       date: "2022-11-03T15:31:30.737Z",
+      firstTeamCountryCode: "FR",
+      secondTeamCountryCode: "BR",
+    },
+  });
+
+  await prisma.game.create({
+    data: {
+      date: "2022-11-04T15:31:30.737Z",
+      firstTeamCountryCode: "DE",
+      secondTeamCountryCode: "FR",
+    },
+  });
+
+  await prisma.game.create({
+    data: {
+      date: "2022-11-03T15:31:30.737Z",
       firstTeamCountryCode: "BR",
       secondTeamCountryCode: "AR",
+
+      guesses: {
+        create: {
+          firstTeamPoints: 1,
+          secondTeamPoints: 2,
+
+          participant: {
+            connect: {
+              userId_poolId: {
+                userId: user.id,
+                poolId: pool.id,
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  await prisma.game.create({
+    data: {
+      date: "2022-11-04T15:31:30.737Z",
+      firstTeamCountryCode: "GE",
+      secondTeamCountryCode: "AR",
+
+      guesses: {
+        create: {
+          firstTeamPoints: 2,
+          secondTeamPoints: 1,
+
+          participant: {
+            connect: {
+              userId_poolId: {
+                userId: user.id,
+                poolId: pool.id,
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  await prisma.game.create({
+    data: {
+      date: "2022-11-05T15:31:30.737Z",
+      firstTeamCountryCode: "BR",
+      secondTeamCountryCode: "GE",
 
       guesses: {
         create: {
