@@ -32,7 +32,7 @@ export default function Posts({ posts }: PostsProps) {
       </Head>
       <main className={styles.container}>
         <div className={styles.posts}>
-          {posts.map((post) => (
+          {/* {posts.map((post) => (
             <Link href={`/posts/${post.slug}`}>
               <div className="flex flex-row cursor-pointer">
                 <div className="w-32 md:w-1/4 px-2 inline-block align-middle">
@@ -53,7 +53,7 @@ export default function Posts({ posts }: PostsProps) {
                 </a>
               </div>
             </Link>
-          ))}
+          ))} */}
         </div>
       </main>
     </>
