@@ -1,8 +1,8 @@
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 import Navbar from "../../../components/Navbar";
-import { SignInButton } from "../../../components/SignInButton";
 import { PoolCard, PoolCardPros } from "../../../components/PoolCard";
 
 import { api } from "../../../lib/api";
@@ -16,6 +16,7 @@ export default function AllPool() {
   const [poolDetail, setPoolDetail] = useState<PoolCardPros>(undefined);
   const [code, setCode] = useState("");
 
+  const router = useRouter();
   const notification = toastNotification();
   const { data: session } = useSession();
 
@@ -31,10 +32,12 @@ export default function AllPool() {
       setIsLoading(false);
     }
   }
-
   useEffect(() => {
+    if (!session) {
+      router.push("/bolao");
+    }
     fetchPools();
-  });
+  }, []);
 
   async function findPool(event: FormEvent) {
     event.preventDefault();
@@ -75,13 +78,10 @@ export default function AllPool() {
     }
   }
 
-  if (!session) {
-    return <SignInButton />;
-  }
   return (
     <>
       <Navbar />
-      <div className="max-w-[1124px] h-screen md:mx-auto mx-3 grid md:grid-cols-2 grid-cols-1 gap-28  items-center">
+      <div className="max-w-[1124px] h-screen md:mx-auto mx-3">
         <main>
           <h1 className="mb-3 mt-3 text-white text-lg font-bold leading-tight">
             Buscar bolão por código.
@@ -102,27 +102,30 @@ export default function AllPool() {
               <Button text="Buscar Bolão" />
             </div>
           </form>
-
           <p className="mt-4 text-sm text-gray-300 leading-relaxed">
             Veja abaixo alguns dos bolões já cadastrados. 🚀
           </p>
-
-          <div className="mt-10 pt-10 border-t border-gray-600 flex items-center justify-between text-gray-100"></div>
-
-          {pools.map((pool) => {
-            return (
-              <button
-                key={pool.id}
-                className="w-full  mb-3"
-                onClick={() => handleShowPoolDetails(pool.code)}
-              >
-                <PoolCard data={pool} />
-              </button>
-            );
-          })}
         </main>
-        <div>
-          <PoolDetailsCard data={poolDetail} />
+
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-28">
+          <div>
+            <div className="mt-10 pt-10 border-t border-gray-600 flex items-center justify-between text-gray-100"></div>
+
+            {pools.map((pool) => {
+              return (
+                <button
+                  key={pool.id}
+                  className="w-full  mb-3"
+                  onClick={() => handleShowPoolDetails(pool.code)}
+                >
+                  <PoolCard data={pool} />
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex justify-start items-start">
+            {poolDetail ? <PoolDetailsCard data={poolDetail} /> : ""}
+          </div>
         </div>
       </div>
     </>

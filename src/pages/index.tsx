@@ -6,7 +6,6 @@ import { GetStaticProps } from "next";
 
 import avatar from "../../public/images/avatar.svg";
 import Cards from "../components/Cards";
-import { getPrismicClient } from "../services/prismic";
 import developerImage from "../../public/images/developer1.jpg";
 import Navbar from "../components/Navbar";
 import VideosCards from "../components/VideosCards";
@@ -51,7 +50,7 @@ interface PostsProps {
   videos: VideosProps[];
 }
 
-export default function Home({ posts, videos }: PostsProps) {
+export default function Home() {
   return (
     <>
       <Navbar />
@@ -82,7 +81,7 @@ export default function Home({ posts, videos }: PostsProps) {
           <h1>Posts </h1>
         </div>
         <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-          {posts.map((post) => (
+          {/* {posts.map((post) => (
             <Cards
               key={post.uid}
               image={{
@@ -96,14 +95,14 @@ export default function Home({ posts, videos }: PostsProps) {
               href={`/posts/${post.uid}`}
               updatedAt={post.updatedAt}
             />
-          ))}
+          ))} */}
         </div>
         <div className="border-b divide-white h-11"> </div>
         <div className="text-2xl md:text-4xl pl-10 mt-3">
           <h1>Vídeos </h1>
         </div>
         <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
-          {videos.map((video) => (
+          {/* {videos.map((video) => (
             <VideosCards
               key={video.uid}
               video={video.video}
@@ -112,7 +111,7 @@ export default function Home({ posts, videos }: PostsProps) {
               tags={video.tags}
               href={`/videos/${video.uid}`}
             />
-          ))}
+          ))} */}
         </div>
         <Widget />
       </div>
@@ -120,93 +119,93 @@ export default function Home({ posts, videos }: PostsProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const prismic = getPrismicClient();
+// export const getStaticProps: GetStaticProps = async () => {
+//   const prismic = getPrismicClient();
 
-  const postResponse = await prismic.query(
-    [Prismic.predicates.at("document.type", "posts")],
-    {
-      fetch: ["publication.title", "publication.content"],
-      pageSize: 100,
-    }
-  );
+//   const postResponse = await prismic.query(
+//     [Prismic.predicates.at("document.type", "posts")],
+//     {
+//       fetch: ["publication.title", "publication.content"],
+//       pageSize: 100,
+//     }
+//   );
 
-  const videoResponse = await prismic.query(
-    [Prismic.predicates.at("document.type", "videos")],
-    {
-      fetch: ["publication.title", "publication.content"],
-      pageSize: 100,
-    }
-  );
+//   const videoResponse = await prismic.query(
+//     [Prismic.predicates.at("document.type", "videos")],
+//     {
+//       fetch: ["publication.title", "publication.content"],
+//       pageSize: 100,
+//     }
+//   );
 
-  const posts = postResponse.results.map((post) => {
-    return {
-      uid: post.uid,
-      slug: post.uid,
-      title: RichText.asText(post.data.title),
-      tags: post.tags,
-      paragraph:
-        post.data.content.find((content) => content.type === "paragraph")
-          ?.text ?? "",
-      image:
-        post.data.content
-          .find((content) => content.type === "image")
-          ?.url.split("?")[0] ?? developerImage,
-      width:
-        post.data.content.find((content) => content.type === "image")
-          ?.dimensions.width ?? 0,
-      height:
-        post.data.content.find((content) => content.type === "image")
-          ?.dimensions.height ?? 0,
-      createdAt: new Date(post.first_publication_date).toLocaleDateString(
-        "pt-BR",
-        {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        }
-      ),
-      updatedAt: new Date(post.last_publication_date).toLocaleDateString(
-        "pt-BR",
-        {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        }
-      ),
-    };
-  });
+//   const posts = postResponse.results.map((post) => {
+//     return {
+//       uid: post.uid,
+//       slug: post.uid,
+//       title: RichText.asText(post.data.title),
+//       tags: post.tags,
+//       paragraph:
+//         post.data.content.find((content) => content.type === "paragraph")
+//           ?.text ?? "",
+//       image:
+//         post.data.content
+//           .find((content) => content.type === "image")
+//           ?.url.split("?")[0] ?? developerImage,
+//       width:
+//         post.data.content.find((content) => content.type === "image")
+//           ?.dimensions.width ?? 0,
+//       height:
+//         post.data.content.find((content) => content.type === "image")
+//           ?.dimensions.height ?? 0,
+//       createdAt: new Date(post.first_publication_date).toLocaleDateString(
+//         "pt-BR",
+//         {
+//           day: "2-digit",
+//           month: "long",
+//           year: "numeric",
+//         }
+//       ),
+//       updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+//         "pt-BR",
+//         {
+//           day: "2-digit",
+//           month: "long",
+//           year: "numeric",
+//         }
+//       ),
+//     };
+//   });
 
-  const videos = videoResponse.results.map((video) => {
-    return {
-      uid: video.uid,
-      slug: video.uid,
-      title: RichText.asText(video.data.title),
-      tags: video.tags,
-      video: video.data.videos,
-      paragraph:
-        video.data.resumo.find((content) => content.type === "paragraph")
-          ?.text ?? "",
-      createdAt: new Date(video.first_publication_date).toLocaleDateString(
-        "pt-BR",
-        {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        }
-      ),
-      updatedAt: new Date(video.last_publication_date).toLocaleDateString(
-        "pt-BR",
-        {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        }
-      ),
-    };
-  });
-  return {
-    props: { posts, videos },
-    revalidate: 1,
-  };
-};
+//   const videos = videoResponse.results.map((video) => {
+//     return {
+//       uid: video.uid,
+//       slug: video.uid,
+//       title: RichText.asText(video.data.title),
+//       tags: video.tags,
+//       video: video.data.videos,
+//       paragraph:
+//         video.data.resumo.find((content) => content.type === "paragraph")
+//           ?.text ?? "",
+//       createdAt: new Date(video.first_publication_date).toLocaleDateString(
+//         "pt-BR",
+//         {
+//           day: "2-digit",
+//           month: "long",
+//           year: "numeric",
+//         }
+//       ),
+//       updatedAt: new Date(video.last_publication_date).toLocaleDateString(
+//         "pt-BR",
+//         {
+//           day: "2-digit",
+//           month: "long",
+//           year: "numeric",
+//         }
+//       ),
+//     };
+//   });
+//   return {
+//     props: { posts, videos },
+//     revalidate: 1,
+//   };
+// };

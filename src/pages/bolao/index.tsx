@@ -14,6 +14,17 @@ import { getToken } from "next-auth/jwt";
 import { Button } from "../../components/Button";
 import { useRouter } from "next/router";
 
+// TODO
+// CRIAÇÃO DOS JOGOS
+// ENVIAR PALPITES POR JOGO
+//
+// FUTURO
+// PAGAMENTO PARA LANÇAR APOSTAS
+// CONCLUSÃO DO RESULTADO
+// RANKING
+// DIVISÃO DAS APOSTAS ENTRE OS PARTICIPANTES
+// OUTROS MOLDES DE BOLÕES.
+
 interface HomeProps {
   poolCount: number;
   guessCount: number;

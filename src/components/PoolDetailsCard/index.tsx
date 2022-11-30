@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+
 import { api } from "../../lib/api";
 import { toastNotification } from "../../utils/toast";
 import { Button } from "../Button";
+import { Loading } from "../Loading";
 import { ParticipantProps, Participants } from "../PoolCard/Participants";
-import { useRouter } from "next/router";
 
 export interface PoolCardPros {
   id: string;
@@ -28,11 +31,14 @@ interface Props {
 export function PoolDetailsCard({ data }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const notification = toastNotification();
+  const { data: session } = useSession();
 
   const route = useRouter();
   if (!data) {
-    return;
+    return <Loading />;
   }
+  console.log(data);
+  console.log(session);
 
   async function handleJoinPool(code: string) {
     if (!code.trim()) {
@@ -45,7 +51,6 @@ export function PoolDetailsCard({ data }: Props) {
       notification.notifySuccess("Você entrou no bolão com sucesso!");
       route.push(`/pools/details/${code}`);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       if (error.response.data.message === "Pool not found.") {
         return notification.notifyError("Bolão não encontrado.");
@@ -57,8 +62,12 @@ export function PoolDetailsCard({ data }: Props) {
     }
   }
 
+  function handleSeeDetails(code: string) {
+    route.push(`/bolao/pools/details/${code}`);
+  }
+
   return (
-    <div className="w-full h-full bg-gray-800 border-b-2 border-b-yellow-500  rounded-sm mb-3 p-4">
+    <div className="w-full bg-gray-800 border-b-2 border-b-yellow-500  rounded-sm mb-3 p-4">
       <div className="flex justify-between items-center">
         <div>
           <h5 className="text-white text-base">{data.title}</h5>
@@ -84,11 +93,18 @@ export function PoolDetailsCard({ data }: Props) {
       <p className="text-sm px-3 mb-3">
         {data.description ? data.description : "Sem descrição"}
       </p>
+      <div className="flex justify-between items-center">
+        <Button
+          text="Entrar neste bolão"
+          onClick={() => handleJoinPool(data.code)}
+        />
 
-      <Button
-        text="Entrar neste bolão"
-        onClick={() => handleJoinPool(data.code)}
-      />
+        <Button
+          buttonType="success"
+          text="Ver detalhes"
+          onClick={() => handleSeeDetails(data.code)}
+        />
+      </div>
     </div>
   );
 }
