@@ -5,54 +5,26 @@ import { cut_text } from "../../utils/texts";
 import CardTags from "./CardTags";
 
 interface CardsProps {
-  image?: StaticImageData;
   title: string;
-  paragraph: string;
-  tags: string[];
+  tags: string;
   href: string;
+  tabcoins: number;
   updatedAt: string;
 }
 
-const Cards = ({
-  image,
-  title,
-  paragraph,
-  tags,
-  href,
-  updatedAt,
-}: CardsProps) => {
-  const [isUndefined, setIsUndefined] = useState(true);
-  if (image.src === undefined) {
-    setIsUndefined(false);
-  }
-
+const Cards = ({ title, tags, href, tabcoins, updatedAt }: CardsProps) => {
   return (
     <Link href={href} passHref>
-      <div className="max-h-full bg-neutral-900 rounded shadow-lg cursorPointer">
-        <div className="w-100 flex justify-end content-end p-3">
-          <small>
+      <div className="max-h-full bg-neutral-900 rounded shadow-lg cursorPointer pt-2 mt-3">
+        <div className="max-w-5xl mx-auto pl-6">
+          <div className="font-bold text-base mb-2">{title}</div>
+          <small className="pr-2">
             Atualizado: <time>{updatedAt}</time>
           </small>
-        </div>
-        <div className="min-h-[50%] flex justify-center content-center p-3">
-          {isUndefined && (
-            <Image
-              className="w-full h-auto"
-              src={image.src}
-              width={image.width}
-              height={image.height}
-              alt={title}
-            />
-          )}
-        </div>
-        <div className="px-6 py-4">
-          <div className="font-bold text-2xl mb-2">{title}</div>
-          <p className="text-base">{cut_text(paragraph)}</p>
-        </div>
-        <div className="px-6 pt-4 pb-2">
-          {tags.map((tag, index) => {
-            return <CardTags key={index}>{tag}</CardTags>;
-          })}
+          <CardTags>{tags}</CardTags>
+          <CardTags>
+            {tabcoins} <small style={{ fontSize: 10 }}>Tabcoins</small>
+          </CardTags>
         </div>
       </div>
     </Link>

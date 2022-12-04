@@ -1,27 +1,18 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useState } from "react";
 
 import Navbar from "../../components/Navbar";
 import styles from "./styles.module.scss";
 
-type Post = {
-  slug: string;
-  title: string;
-  image?: string;
-  width?: number;
-  height?: number;
-  excerpt: string;
-  updatedAt: string;
-};
+import { PostProps } from "../index";
 
 interface PostsProps {
-  posts: Post[];
+  post: PostProps;
 }
 
-export default function Posts({ posts }: PostsProps) {
-  const [isUndefined, setIsUndefined] = useState(true);
-
+export default function Posts({ post }: PostsProps) {
   return (
     <>
       <Navbar />
@@ -30,28 +21,16 @@ export default function Posts({ posts }: PostsProps) {
       </Head>
       <main className={styles.container}>
         <div className={styles.posts}>
-          {/* {posts.map((post) => (
-            <Link href={`/posts/${post.slug}`}>
-              <div className="flex flex-row cursor-pointer">
-                <div className="w-32 md:w-1/4 px-2 inline-block align-middle">
-                  {isUndefined && (
-                    <Image
-                      className="w-full max-h-6"
-                      src={post.image}
-                      width={post.width}
-                      height={post.height}
-                      alt={post.title}
-                    />
-                  )}
-                </div>
-                <a className="w-64 md:w-full" key={post.slug}>
-                  <time>{post.updatedAt}</time>
-                  <strong>{post.title}</strong>
-                  <p>{post.excerpt}</p>
-                </a>
-              </div>
-            </Link>
-          ))} */}
+          <Link href={`/posts/${post.slug}`}>
+            <div className="flex flex-row cursor-pointer">
+              <div className="w-32 md:w-1/4 px-2 inline-block align-middle"></div>
+              <a className="w-64 md:w-full" key={post.slug}>
+                <time>{post.updatedAt}</time>
+                <strong>{post.title}</strong>
+                <p>{post}</p>
+              </a>
+            </div>
+          </Link>
         </div>
       </main>
     </>
