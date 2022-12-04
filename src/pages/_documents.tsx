@@ -1,4 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import { Widget } from "../components/Widget";
 
 export default class MyDocument extends Document {
   render() {
@@ -15,6 +16,7 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <Main />
+          <Widget />
           <NextScript />
         </body>
       </Html>
