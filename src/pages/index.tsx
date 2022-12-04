@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import avatar from "../../public/images/avatar.svg";
 import Navbar from "../components/Navbar";
-import { Widget } from "../components/Widget";
 
 export type VideoProps = {
   embed_url: string;
@@ -79,7 +78,6 @@ export default function Home() {
           <h1>Vídeos </h1>
         </div>
         <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5"></div>
-        <Widget />
       </div>
     </>
   );
