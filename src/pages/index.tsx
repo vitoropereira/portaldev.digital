@@ -1,55 +1,47 @@
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 
-import avatar from "../../public/images/avatar.svg";
-import Navbar from "../components/Navbar";
+import avatar from "public/images/avatar.svg";
+import Cards from "src/components/Cards";
+import Navbar from "src/components/Navbar";
 
-export type VideoProps = {
-  embed_url: string;
-  author_name: string;
-  author_url: string;
-  thumbnail_url: string;
-  thumbnail_width: number;
-  thumbnail_height: number;
-  html: string;
-};
-
-type VideosProps = {
-  uid: string;
-  tags: string[];
-  paragraph: string;
+interface TabnewsProps {
+  id: string;
+  owner_id: string;
+  parent_id: string | null;
+  slug: string;
   title: string;
-  video: VideoProps;
-  image?: string;
-  createdAt: string;
-  updatedAt: string;
-};
+  status: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string | null;
+  owner_username: string;
+  tabcoins: number;
+}
 
-type PostProps = {
+export type PostProps = {
   uid: string;
-  tags: string[];
+  slug: string;
+  tags: string;
   title: string;
-  paragraph: string;
-  image?: string;
-  width?: number;
-  height?: number;
+  tabcoins: number;
   createdAt: string;
   updatedAt: string;
 };
 
 interface PostsProps {
   posts: PostProps[];
-  videos: VideosProps[];
 }
 
-export default function Home() {
+export default function Home({ posts }: PostsProps) {
   return (
     <>
       <Navbar />
       <Head>
         <title>Home | portal dev</title>
       </Head>
-      <div className="container mx-auto homeBackground">
+      <div className="container mx-auto homeBackground mb-3">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="items-center mt-6 flex flex-col justify-center">
             <span className="text-2xl md:text-4xl">👏 Olá, bem vindo!</span>
@@ -69,107 +61,57 @@ export default function Home() {
           </div>
         </div>
         <div className="border-b divide-white h-11"> </div>
-        <div className="text-2xl md:text-4xl pl-10 mt-3">
-          <h1>Posts </h1>
+        <div className="text-base px-3 mt-3">
+          <h1 className="text-2xl md:text-4xl">Posts </h1>
+          {posts.map((post) => (
+            <Cards
+              key={post.uid}
+              href={`posts/${post.slug}`}
+              tags={post.tags}
+              title={post.title}
+              tabcoins={post.tabcoins}
+              updatedAt={post.updatedAt}
+            />
+          ))}
         </div>
-        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5"></div>
-        <div className="border-b divide-white h-11"> </div>
-        <div className="text-2xl md:text-4xl pl-10 mt-3">
-          <h1>Vídeos </h1>
-        </div>
-        <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5"></div>
       </div>
     </>
   );
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const prismic = getPrismicClient();
+export const getStaticProps: GetStaticProps = async () => {
+  const data: TabnewsProps[] = await fetch(
+    "https://www.tabnews.com.br/api/v1/contents/portaldev"
+  )
+    .then((response) => response.json())
+    .then((data) => data);
 
-//   const postResponse = await prismic.query(
-//     [Prismic.predicates.at("document.type", "posts")],
-//     {
-//       fetch: ["publication.title", "publication.content"],
-//       pageSize: 100,
-//     }
-//   );
+  const postResponse = data.filter((post) => {
+    return !post.parent_id && post.status === "published";
+  });
 
-//   const videoResponse = await .query(
-//     [Prismic.predicates.at("document.type", "videos")],
-//     {
-//       fetch: ["publication.title", "publication.content"],
-//       pageSize: 100,
-//     }
-//   );
+  const posts = postResponse.map((post) => {
+    return {
+      uid: post.id,
+      slug: post.slug,
+      title: post.title,
+      tags: post.owner_username,
+      createdAt: new Date(post.created_at).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      }),
+      updatedAt: new Date(post.updated_at).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      }),
+      tabcoins: post.tabcoins,
+    };
+  });
 
-//   const posts = postResponse.results.map((post) => {
-//     return {
-//       uid: post.uid,
-//       slug: post.uid,
-//       title: RichText.asText(post.data.title),
-//       tags: post.tags,
-//       paragraph:
-//         post.data.content.find((content) => content.type === "paragraph")
-//           ?.text ?? "",
-//       image:
-//         post.data.content
-//           .find((content) => content.type === "image")
-//           ?.url.split("?")[0] ?? developerImage,
-//       width:
-//         post.data.content.find((content) => content.type === "image")
-//           ?.dimensions.width ?? 0,
-//       height:
-//         post.data.content.find((content) => content.type === "image")
-//           ?.dimensions.height ?? 0,
-//       createdAt: new Date(post.first_publication_date).toLocaleDateString(
-//         "pt-BR",
-//         {
-//           day: "2-digit",
-//           month: "long",
-//           year: "numeric",
-//         }
-//       ),
-//       updatedAt: new Date(post.last_publication_date).toLocaleDateString(
-//         "pt-BR",
-//         {
-//           day: "2-digit",
-//           month: "long",
-//           year: "numeric",
-//         }
-//       ),
-//     };
-//   });
-
-//   const videos = videoResponse.results.map((video) => {
-//     return {
-//       uid: video.uid,
-//       slug: video.uid,
-//       title: RichText.asText(video.data.title),
-//       tags: video.tags,
-//       video: video.data.videos,
-//       paragraph:
-//         video.data.resumo.find((content) => content.type === "paragraph")
-//           ?.text ?? "",
-//       createdAt: new Date(video.first_publication_date).toLocaleDateString(
-//         "pt-BR",
-//         {
-//           day: "2-digit",
-//           month: "long",
-//           year: "numeric",
-//         }
-//       ),
-//       updatedAt: new Date(video.last_publication_date).toLocaleDateString(
-//         "pt-BR",
-//         {
-//           day: "2-digit",
-//           month: "long",
-//           year: "numeric",
-//         }
-//       ),
-//     };
-//   });
-//   return {
-//     props: { posts, videos },
-//     revalidate: 1,
-//   };
-// };
+  return {
+    props: { posts },
+    revalidate: 1,
+  };
+};
