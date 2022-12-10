@@ -2,9 +2,9 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 
-import avatar from "../../public/images/avatar.svg";
-import Cards from "../components/Cards";
-import Navbar from "../components/Navbar";
+import avatar from "public/images/avatar.svg";
+import Cards from "src/components/Cards";
+import Navbar from "src/components/Navbar";
 
 interface TabnewsProps {
   id: string;
@@ -66,7 +66,7 @@ export default function Home({ posts }: PostsProps) {
           {posts.map((post) => (
             <Cards
               key={post.uid}
-              href={post.slug}
+              href={`posts/${post.slug}`}
               tags={post.tags}
               title={post.title}
               tabcoins={post.tabcoins}
@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps = async () => {
   )
     .then((response) => response.json())
     .then((data) => data);
-  console.log(data);
+
   const postResponse = data.filter((post) => {
     return !post.parent_id && post.status === "published";
   });
