@@ -87,6 +87,15 @@ export default function Post({ contentFound, childrenFound }: PostProps) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { slug } = params;
+  if (!slug) {
+    return {
+      props: {
+        contentFound: "",
+        childrenFound: "",
+        contentMetadata: "",
+      },
+    };
+  }
 
   const response = await fetch(
     `https://www.tabnews.com.br/api/v1/contents/portaldev/${slug}`
