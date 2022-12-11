@@ -12,7 +12,7 @@ import breaksPlugin from "@bytemd/plugin-breaks";
 import gemojiPlugin from "@bytemd/plugin-gemoji";
 import "bytemd/dist/index.min.css";
 import "highlight.js/styles/github.css";
-import "github-markdown-css/github-markdown-light.css";
+import "github-markdown-css/github-markdown-dark.css";
 import CardTags from "./Cards/CardTags";
 import PublishedSince from "./PublishedSince";
 import { LinkIcon } from "@primer/octicons-react";
