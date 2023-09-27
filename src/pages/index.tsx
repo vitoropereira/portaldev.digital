@@ -1,3 +1,4 @@
+import { promises } from "fs";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -66,7 +67,7 @@ export default function Home({ posts }: PostsProps) {
           {posts.map((post) => (
             <Cards
               key={post.uid}
-              href={`posts/${post.slug}`}
+              href={`posts/${post.tags}/${post.slug}`}
               tags={post.tags}
               title={post.title}
               tabcoins={post.tabcoins}
@@ -80,14 +81,30 @@ export default function Home({ posts }: PostsProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data: TabnewsProps[] = await fetch(
-    "https://www.tabnews.com.br/api/v1/contents/portaldev"
-  )
-    .then((response) => response.json())
-    .then((data) => data);
+  const [portaldev, VitorPereira, respondeaqui] = await Promise.all([
+    fetch("https://www.tabnews.com.br/api/v1/contents/portaldev")
+      .then((response) => response.json())
+      .then((data) => data),
+
+    fetch("https://www.tabnews.com.br/api/v1/contents/VitorPereira")
+      .then((response) => response.json())
+      .then((data) => data),
+
+    fetch("https://www.tabnews.com.br/api/v1/contents/respondeaqui")
+      .then((response) => response.json())
+      .then((data) => data),
+  ]);
+
+  const data: TabnewsProps[] = [...portaldev, ...VitorPereira, ...respondeaqui];
 
   const postResponse = data.filter((post) => {
     return !post.parent_id && post.status === "published";
+  });
+
+  postResponse.sort((a, b) => {
+    const dateA = new Date(a.created_at).getTime();
+    const dateB = new Date(b.created_at).getTime();
+    return dateB - dateA;
   });
 
   const posts = postResponse.map((post) => {
