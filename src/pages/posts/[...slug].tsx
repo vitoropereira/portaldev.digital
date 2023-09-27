@@ -87,6 +87,8 @@ export default function Post({ contentFound, childrenFound }: PostProps) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { slug } = params;
+
+  console.log(slug);
   if (!slug) {
     return {
       props: {
@@ -98,7 +100,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   const response = await fetch(
-    `https://www.tabnews.com.br/api/v1/contents/portaldev/${slug}`
+    `https://www.tabnews.com.br/api/v1/contents/${slug[0]}/${slug[1]}`
   )
     .then((response) => response.json())
     .then((data) => data);
@@ -112,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     // image: `${webserverHost}/api/v1/contents/${response.owner_username}/${response.slug}/thumbnail`,
     image:
       "https://www.portaldev.digital/_next/static/media/avatar.629887bb.svg",
-    url: `https://www.portaldev.digital/${response.slug}`,
+    url: `https://www.portaldev.digital/${slug[0]}/${slug[1]}`,
     description: oneLineBody.substring(0, 190),
     published_time: response.published_at,
     modified_time: response.updated_at,
@@ -121,7 +123,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 
   const parentContentFound = await fetch(
-    `https://www.tabnews.com.br/api/v1/contents/portaldev/${slug}/children`
+    `https://www.tabnews.com.br/api/v1/contents/${slug[0]}/${slug[1]}/children`
   )
     .then((response) => response.json())
     .then((data) => data);
