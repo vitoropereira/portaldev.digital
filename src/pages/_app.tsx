@@ -14,6 +14,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+        <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
       </Head>
       <ThemeProvider preventSSRMismatch colorMode="dark">
         <BaseStyles>
