@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { FormEvent, useState } from "react";
 
-import Faq from "../../components/Faq";
+// import Faq from "../../components/Faq";
 import { Loading } from "../../components/Loading";
 import Navbar from "../../components/Navbar";
 import { SuccessSent } from "../../components/SuccessSent";
@@ -242,7 +242,7 @@ export default function Mentoring() {
             </h1>
           </div>
 
-          <Faq />
+          {/* <Faq /> */}
         </div>
       </div>
     </>
