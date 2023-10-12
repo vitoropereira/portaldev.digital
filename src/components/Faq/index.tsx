@@ -1,6 +1,4 @@
-import Image from "next/image";
-import style from "./Faq.module.css";
-import type { NextPage } from "next";
+import style from "./faq.module.css";
 import FaqQuestion from "./FaqQuestion/FaqQuestion";
 
 const questions = [
@@ -28,7 +26,7 @@ const questions = [
     answer: (
       <span>
         O Feedback da mentoria irá para o email que você informou no formulário
-        ou faremos um vídeo e colocaremos em nosso canal no Youtube.
+        ou faremos um vídeo e colocaremos em nosso canal no YouTube.
       </span>
     ),
   },
@@ -38,7 +36,7 @@ const questions = [
       <span>
         Não! O vídeo não terá seu nome, email, telefone, etc. Caso você queira
         ter seu nome e/ou repositório sendo revelado no nosso vídeo do
-        Youtube,basta escrever a seguinte frase no formulário: Autorizo mostrar
+        YouTube,basta escrever a seguinte frase no formulário: Autorizo mostrar
         meu repositório.
       </span>
     ),

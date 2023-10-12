@@ -1,7 +1,6 @@
-import { FC, ReactNode, useCallback, useState } from "react";
-import styles from "./FaqQuestion.module.scss";
-import Image from "next/image";
-import { ExpandIcon } from "../../../icons/ExpandIcon";
+import { ReactNode, useCallback, useState } from "react";
+import styles from "./FaqQuestion.module.css";
+import { ExpandIcon } from "@/icons/ExpandIcon";
 
 type FaqQuestionProps = {
   question: string;
