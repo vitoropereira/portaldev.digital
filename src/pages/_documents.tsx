@@ -6,13 +6,15 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
             rel="stylesheet"
           />
-
-          <link rel="shortcut" href="./images/favicon.png" type="image/png" />
+          {/* <link
+            rel="icon"
+            type="image/svg+xml"
+            href="https://github.githubassets.com/favicons/favicon.svg"
+          ></link> */}
         </Head>
         <body>
           <Main />
