@@ -1,9 +1,9 @@
+import Contents from "@/components/Contents";
+import Navbar from "@/components/Navbar";
+import { RenderChildrenTree } from "@/components/RenderChildrenTree";
+import removeMarkdown from "@/utils/texts";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Contents from "src/components/Contents";
-import Navbar from "src/components/Navbar";
-import { RenderChildrenTree } from "src/components/RenderChildrenTree";
-import removeMarkdown from "src/utils/texts";
 
 interface Children {
   id: string;

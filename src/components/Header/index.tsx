@@ -1,6 +1,5 @@
 import styles from "./styles.module.scss";
 import { ActiveLink } from "../ActiveLink";
-import { SignInButton } from "../SignInButton";
 import Image from "next/image";
 
 import logo from "../../../public/images/logo.png";

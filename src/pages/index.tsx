@@ -1,11 +1,10 @@
-import { promises } from "fs";
+import Cards from "@/components/Cards";
+import Navbar from "@/components/Navbar";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 
 import avatar from "public/images/avatar.svg";
-import Cards from "src/components/Cards";
-import Navbar from "src/components/Navbar";
 
 interface TabnewsProps {
   id: string;
