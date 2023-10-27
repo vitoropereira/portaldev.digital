@@ -85,13 +85,10 @@ export const getStaticProps: GetStaticProps = async () => {
       .then((response) => response.json())
       .then((data) => data),
 
-    fetch("https://www.tabnews.com.br/api/v1/contents/VitorPereira")
+    fetch("https://www.tabnews.com.br/api/v1/contents/vitorpereirasaas")
       .then((response) => response.json())
       .then((data) => data),
 
-    fetch("https://www.tabnews.com.br/api/v1/contents/respondeaqui")
-      .then((response) => response.json())
-      .then((data) => data),
   ]);
 
   const data: TabnewsProps[] = [...portaldev, ...VitorPereira, ...respondeaqui];
