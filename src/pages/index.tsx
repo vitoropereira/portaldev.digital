@@ -80,18 +80,11 @@ export default function Home({ posts }: PostsProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [portaldev, VitorPereira, respondeaqui] = await Promise.all([
-    fetch("https://www.tabnews.com.br/api/v1/contents/portaldev")
+  const vitorPereira = await fetch("https://www.tabnews.com.br/api/v1/contents/vitorpereirasaas")
       .then((response) => response.json())
-      .then((data) => data),
+      .then((data) => data)
 
-    fetch("https://www.tabnews.com.br/api/v1/contents/vitorpereirasaas")
-      .then((response) => response.json())
-      .then((data) => data),
-
-  ]);
-
-  const data: TabnewsProps[] = [...portaldev, ...VitorPereira, ...respondeaqui];
+  const data: TabnewsProps[] = [...vitorPereira];
 
   const postResponse = data.filter((post) => {
     return !post.parent_id && post.status === "published";
