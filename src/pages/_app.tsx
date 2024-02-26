@@ -9,6 +9,7 @@ import { BaseStyles, ThemeProvider } from "@primer/react";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/global.css";
 import Script from "next/script";
+import { id } from "date-fns/locale";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -18,13 +19,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
 
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
-        <Script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "l805e911lq");
-      </Script>
+
+       
       </Head>
       <ThemeProvider preventSSRMismatch colorMode="dark">
         <BaseStyles>
