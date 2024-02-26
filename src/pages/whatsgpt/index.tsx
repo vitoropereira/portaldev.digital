@@ -55,8 +55,13 @@ export default function StripeGpt() {
   return (
     <>
       <Navbar />
-      <h3>Whats Bot GPT é um produto Portal dev.</h3>
       <div className="container mx-auto homeBackground">
+        <h2>Whats Bot GPT é um produto Portal dev.</h2>
+        <p>
+          🌟 Conheça o Whats Bot GPT! 💬✨ Seu assistente virtual desenvolvido
+          para te ajudar a utilizar o ChatGPT pelo WhatsApp. Criado para
+          fornecer informações e auxílio de forma educada e prestativa. 🤖
+        </p>
         <StripePage />
       </div>
     </>
