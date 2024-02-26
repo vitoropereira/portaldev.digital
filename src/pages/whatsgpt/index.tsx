@@ -65,6 +65,15 @@ export default function StripeGpt() {
           fornecer informações e auxílio de forma educada e prestativa. 🤖
         </p>
         <StripePage />
+        <div className="p-4 bg-blue-200 text-blue-800 rounded-lg">
+          <p className="font-bold text-lg mb-2">
+            🚀 Não perca! Promoção de estreia por tempo limitado! 🎉
+          </p>
+          <p className="text-sm">
+            Aproveite nossos valores promocionais especiais antes que acabem! ⏳
+          </p>
+        </div>
+
         <p>
           Duvidas entre em contato com o{" "}
           <Link
