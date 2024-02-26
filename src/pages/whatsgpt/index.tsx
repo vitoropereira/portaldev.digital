@@ -55,7 +55,7 @@ export default function StripeGpt() {
   return (
     <>
       <Navbar />
-
+      <h3>Whats Bot GPT é um produto Portal dev.</h3>
       <div className="container mx-auto homeBackground">
         <StripePage />
       </div>
