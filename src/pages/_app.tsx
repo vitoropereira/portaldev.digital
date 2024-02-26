@@ -8,6 +8,8 @@ import { BaseStyles, ThemeProvider } from "@primer/react";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/global.css";
+import Script from "next/script";
+import { id } from "date-fns/locale";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -17,6 +19,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
 
         <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
+
+       
       </Head>
       <ThemeProvider preventSSRMismatch colorMode="dark">
         <BaseStyles>
