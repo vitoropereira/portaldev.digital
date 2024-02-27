@@ -1,10 +1,12 @@
 import { FormEvent, useState } from "react";
 
-// import Faq from "../../components/Faq";
 import Navbar from "../../components/Navbar";
 import StripePage from "@/components/StripeWhatsGpt";
 import Link from "next/link";
 import Faq from "@/components/faq";
+import Image from "next/image";
+
+import whatsBotGpt from "public/images/whatsBotGpt.png";
 
 export default function StripeGpt() {
   const [name, setName] = useState("");
@@ -57,13 +59,24 @@ export default function StripeGpt() {
   return (
     <>
       <Navbar />
+      <div className="container mx-auto homeBackground w-[768px] grid md:grid-cols-2 grid-cols-1">
+        <div className="flex justify-center my-3">
+          <Image
+            className="rounded-lg w-1/3 md:w-1/2 lg:w-1/2 object-cover"
+            src={whatsBotGpt}
+            alt="Whats Bot GPT"
+          />
+        </div>
+        <div className="mt-3">
+          <h2 className="text-2xl">Whats Bot GPT é um produto Portal dev.</h2>
+          <p className="mb-0">
+            🌟 Conheça o Whats Bot GPT! 💬✨ Seu assistente virtual desenvolvido
+            para te ajudar a utilizar o ChatGPT pelo WhatsApp. Criado para
+            fornecer informações e auxílio de forma educada e prestativa. 🤖
+          </p>
+        </div>
+      </div>
       <div className="container mx-auto homeBackground w-[768px] mb-5">
-        <h2 className="text-2xl">Whats Bot GPT é um produto Portal dev.</h2>
-        <p>
-          🌟 Conheça o Whats Bot GPT! 💬✨ Seu assistente virtual desenvolvido
-          para te ajudar a utilizar o ChatGPT pelo WhatsApp. Criado para
-          fornecer informações e auxílio de forma educada e prestativa. 🤖
-        </p>
         <StripePage />
         <div className="p-4 bg-blue-200 text-blue-800 rounded-lg">
           <p className="font-bold text-lg mb-2">
