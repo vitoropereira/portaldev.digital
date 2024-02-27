@@ -59,45 +59,49 @@ export default function StripeGpt() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto homeBackground w-[768px] grid md:grid-cols-2 grid-cols-1 max-w-full">
-        <div className="flex justify-center my-3">
-          <Image
-            className="rounded-lg w-1/3 md:w-1/2 lg:w-1/2 object-cover"
-            src={whatsBotGpt}
-            alt="Whats Bot GPT"
-          />
+      <div className=" max-w-ful">
+        <div className="container mx-auto homeBackground w-[768px] grid md:grid-cols-2 grid-cols-1l">
+          <div className="flex justify-center my-3">
+            <Image
+              className="rounded-lg w-1/3 md:w-1/2 lg:w-1/2 object-cover"
+              src={whatsBotGpt}
+              alt="Whats Bot GPT"
+            />
+          </div>
+          <div className="mt-3">
+            <h2 className="text-2xl">Whats Bot GPT é um produto Portal dev.</h2>
+            <p className="mb-0">
+              🌟 Conheça o Whats Bot GPT! 💬✨ Seu assistente virtual
+              desenvolvido para te ajudar a utilizar o ChatGPT pelo WhatsApp.
+              Criado para fornecer informações e auxílio de forma educada e
+              prestativa. 🤖
+            </p>
+          </div>
         </div>
-        <div className="mt-3">
-          <h2 className="text-2xl">Whats Bot GPT é um produto Portal dev.</h2>
-          <p className="mb-0">
-            🌟 Conheça o Whats Bot GPT! 💬✨ Seu assistente virtual desenvolvido
-            para te ajudar a utilizar o ChatGPT pelo WhatsApp. Criado para
-            fornecer informações e auxílio de forma educada e prestativa. 🤖
-          </p>
-        </div>
-      </div>
-      <div className="container mx-auto homeBackground w-[768px] mb-5">
-        <StripePage />
-        <div className="p-4 bg-blue-200 text-blue-800 rounded-lg">
-          <p className="font-bold text-lg mb-2">
-            🚀 Não perca! Promoção de estreia por tempo limitado! 🎉
-          </p>
-          <p className="text-sm">
-            Aproveite nossos valores promocionais especiais antes que acabem! ⏳
-          </p>
-        </div>
+        <div className="container mx-auto homeBackground w-[768px] mb-5">
+          <StripePage />
+          <div className="p-4 bg-blue-200 text-blue-800 rounded-lg">
+            <p className="font-bold text-lg mb-2">
+              🚀 Não perca! Promoção de estreia por tempo limitado! 🎉
+            </p>
+            <p className="text-sm">
+              Aproveite nossos valores promocionais especiais antes que acabem!
+              ⏳
+            </p>
+          </div>
 
-        <p>
-          Duvidas entre em contato com o{" "}
-          <Link
-            href="https://chat.whatsapp.com/Kv6sbZTIWJtDjZvCJIlVy2"
-            className="hover:text-red-500 text-gray-300"
-          >
-            Suporte
-          </Link>
-          .
-        </p>
-        <Faq />
+          <p>
+            Duvidas entre em contato com o{" "}
+            <Link
+              href="https://chat.whatsapp.com/Kv6sbZTIWJtDjZvCJIlVy2"
+              className="hover:text-red-500 text-gray-300"
+            >
+              Suporte
+            </Link>
+            .
+          </p>
+          <Faq />
+        </div>
       </div>
     </>
   );
