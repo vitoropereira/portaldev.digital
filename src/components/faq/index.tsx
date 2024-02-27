@@ -3,68 +3,76 @@ import style from "./faq.module.css";
 
 const WhatsBotGptFAQ = [
   {
-    question: "O que é o WhatsBotGPT?",
+    question: "O que é o Whats Bot GPT?",
     answer: (
       <span>
-        - O WhatsBotGPT é uma ferramenta desenvolvida por Vitor Pereira,
-        projetada para fornecer assistência aos usuários para que possam
-        utilizar as funcionalidades da tecnologia GPT através do WhatsApp,
-        oferecendo respostas e informações diversas.
+        - O Whats Bot GPT é uma ferramenta projetada para fornecer assistência
+        aos usuários para que possam utilizar as funcionalidades da tecnologia
+        GPT através do WhatsApp, oferecendo respostas e informações diversas.
       </span>
     ),
   },
   {
-    question: "Qual é a diferença entre WhatGPT 160k e WhatGPT 320k?",
+    question: "Qual é a diferença entre WhatGPT 7k e WhatGPT 14k?",
     answer: (
       <span>
-        - A diferença reside na quantidade de palavras usadas com o modelo
-        GPT-4. O WhatBotGPT 160k utiliza aproximadamente 160 mil de palavras com
-        o GPT-4, enquanto o WhatGPT 320k utiliza aproximadamente 320 mil de
-        palavras com o GPT-4.
+        - A diferença entre o modelo WhatBotGPT 7k e o WhatGPT 14k está na
+        quantidade de palavras disponíveis para utilização com o GPT-4, um
+        modelo superior ao GPT-3, que será gratuito. O WhatBotGPT 7k utiliza
+        aproximadamente 7 mil palavras com o GPT-4, enquanto o WhatGPT 14k
+        utiliza aproximadamente 14 mil palavras com o GPT-4.
       </span>
     ),
   },
   {
-    question: "Como o WhatsBotGPT pode ajudar os usuários?",
+    question: "Como o Whats Bot GPT pode ajudar os usuários?",
     answer: (
       <span>
-        {" "}
-        - Eu posso ajudar respondendo perguntas, fornecendo informações,
-        assistindo em tarefas como agendar compromissos, oferecer conselhos
-        rápidos, realizar pesquisas rápidas na internet, e muito mais, tudo
-        através do WhatsApp.
+        - Whats Bot GPT pode ajudar respondendo perguntas, fornecendo
+        informações, assistindo em tarefas como agendar compromissos, oferecer
+        conselhos rápidos, e muito mais, tudo através do WhatsApp.
       </span>
     ),
   },
   {
     question:
-      "O WhatsBotGPT é capaz de guardar informações pessoais dos usuários?",
+      "O Whats Bot GPT é capaz de guardar informações pessoais dos usuários?",
     answer: (
       <span>
-        - Não, eu sou programado para manter a privacidade dos usuários. Só
-        retenho informações como e-mails se o usuário explicitamente os fornecer
-        para atualizações ou para fins específicos, e essas informações são
-        mantidas com segurança.
+        - Não, Whats Bot GPT foi programado para manter a privacidade dos
+        usuários. Só retem informações como e-mails se o usuário explicitamente
+        os fornecer para atualizações ou para fins específicos, e essas
+        informações são mantidas com segurança.
       </span>
     ),
   },
   {
-    question: "Qual modelo do GPT o WhatsBotGPT utiliza?",
+    question: "Qual modelo do GPT o Whats Bot GPT utiliza?",
     answer: (
       <span>
-        - No momento, estou usando um modelo avançado de GPT. Sempre que
-        perguntam sobre meu modelo, eu respondo de acordo com a versão que estou
-        utilizando naquele momento.
+        - O WhatBotGPT utiliza o modelo GPT-4 conforme o plano pago. Isso
+        significa que, dependendo do plano escolhido, o What Bot GPT pode
+        aproveitar todas as capacidades avançadas oferecidas pelo modelo GPT-4.
       </span>
     ),
   },
   {
-    question: "Como posso começar a utilizar o WhatsBotGPT?",
+    question: "Como posso começar a utilizar o Whats Bot GPT?",
     answer: (
       <span>
         - É bem simples! Você só precisa iniciar uma conversa comigo no
         WhatsApp. Em seguida, pode começar a me fazer perguntas ou solicitar
         assistência com o que precisar. Estou aqui para ajudar 24/7.
+      </span>
+    ),
+  },
+  {
+    question: "Qual a diferença entre o GPT-3 e o GPT-4?",
+    answer: (
+      <span>
+        - O GPT-4 apresenta melhorias significativas na compreensão de nuances
+        linguísticas e na geração de textos, tornando suas respostas ainda mais
+        precisas e contextuais com relação ao GPT-3.
       </span>
     ),
   },
