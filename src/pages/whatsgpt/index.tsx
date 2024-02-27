@@ -18,11 +18,11 @@ export default function StripeGpt() {
               src={azur}
               alt="Azur seu assistente de WhatsApp com ChatGPT"
             />
-            <h2 className="text-2xl mb-1">Azur seu assistente GPT.</h2>
+            <h2 className="text-2xl mb-1">Azur sua assistente GPT.</h2>
           </div>
           <div className="mt-3 w-[1080px] max-w-full flex justify-center items-center flex-col mx-auto">
             <p className="">
-              🌟 Conheça a Azur! 💬✨ Seu assistente virtual desenvolvido para
+              🌟 Conheça a Azur! 💬✨ Sua assistente virtual desenvolvida para
               te ajudar a utilizar o ChatGPT pelo WhatsApp. Criado para fornecer
               informações e auxílio de forma educada e prestativa. 🤖
             </p>
