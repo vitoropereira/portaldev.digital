@@ -60,7 +60,7 @@ export default function StripeGpt() {
     <>
       <Navbar />
       <div className=" max-w-ful">
-        <div className="container mx-auto homeBackground w-[768px] grid md:grid-cols-2 grid-cols-1l">
+        <div className="container px-3 mx-auto homeBackground grid md:grid-cols-2 grid-cols-1">
           <div className="flex justify-center my-3">
             <Image
               className="rounded-lg w-1/3 md:w-1/2 lg:w-1/2 object-cover"
@@ -78,7 +78,7 @@ export default function StripeGpt() {
             </p>
           </div>
         </div>
-        <div className="container mx-auto homeBackground w-[768px] mb-5">
+        <div className="container mx-auto homeBackground mb-5">
           <StripePage />
           <div className="p-4 bg-blue-200 text-blue-800 rounded-lg">
             <p className="font-bold text-lg mb-2">
