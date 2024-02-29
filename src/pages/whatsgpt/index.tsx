@@ -36,6 +36,10 @@ export default function StripeGpt() {
         </div>
         <div className="container mx-auto homeBackground mb-5">
           <StripePage />
+          <p className="font-bold text-lg -mt-5 mb-8 w-full justify-center items-center flex">
+            🎤 Azur suporta entrada de áudio, com transcrição automática para
+            sua comodidade! 📝
+          </p>
           <div className="p-4 bg-blue-200 text-blue-800 rounded-lg ">
             <p className="font-bold text-lg mb-2">
               🚀 Não perca! Promoção de estreia por tempo limitado! 🎉
