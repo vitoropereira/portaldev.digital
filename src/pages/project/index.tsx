@@ -14,13 +14,13 @@ const projects: Project[] = [
     name: "SmartMeet 🗓️",
     description:
       "Gerencie seus agendamentos de forma eficiente e compartilhe sua agenda com facilidade.",
-    link: "https://smartmeet.digital",
+    link: "https://smartmeet-git-main-portaldev.vercel.app/",
   },
   {
     name: "WebSell 🛒",
     description:
       "Crie sua loja virtual personalizada e venda produtos e serviços online.",
-    link: "https://websell.online",
+    link: "https://websell-online.vercel.app/",
   },
   {
     name: "Insight Vídeo IA 🎥",
@@ -49,6 +49,18 @@ const projects: Project[] = [
     name: "Quiz 🧠",
     description: "Crie e compartilhe questionários interativos.",
     link: "https://quiz-neon-eta.vercel.app",
+  },
+  {
+    name: "Azur 🤖",
+    description:
+      "Uma assistente virtual inteligente e acessível, que facilita a vida através do ChatGPT no WhatsApp.",
+    link: "https://dlxb.short.gy/LFGECb",
+  },
+  {
+    name: "Startup News 🚀",
+    description:
+      "As novidades mais quentes em startups e tecnologias, direto para você com o Startup News!",
+    link: "https://dlxb.short.gy/LkT6nP",
   },
 ];
 
