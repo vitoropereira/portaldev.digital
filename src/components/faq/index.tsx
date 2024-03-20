@@ -13,15 +13,12 @@ const WhatsBotGptFAQ = [
     ),
   },
   {
-    question: "Qual é a diferença entre Azur 7k e Azur 14k?",
+    question: "Qual é a diferença entre Azur Starter e Azur Plus?",
     answer: (
       <span>
-        - A diferença entre o modelo Azur 7k e o Azur 14k está na quantidade de
-        palavras disponíveis para utilização com o GPT-4, um modelo superior ao
-        GPT-3, que será gratuito e ilimitado para quem pagar qualquer um dos
-        planos (com limitações para não pagantes). O Azur 7k utiliza
-        aproximadamente 7 mil palavras com o GPT-4, enquanto o Azur 14k utiliza
-        aproximadamente 14 mil palavras com o GPT-4.
+        - O Plano 2 oferece acesso ao modelo GPT-4 da OpenAI, proporcionando
+        respostas mais precisas e assertivas, sendo 8x mais inteligente que o
+        modelo anterior no Plano 1.
       </span>
     ),
   },
@@ -73,6 +70,16 @@ const WhatsBotGptFAQ = [
         - O GPT-4 apresenta melhorias significativas na compreensão de nuances
         linguísticas e na geração de textos, tornando suas respostas ainda mais
         precisas e contextuais com relação ao GPT-3.
+      </span>
+    ),
+  },
+  {
+    question: "Como gerar imagens com a Azur?",
+    answer: (
+      <span>
+        - É muito simples! Basta colocar o comando `/imagem` e na frente
+        escrever como você deseja a imagem. Cara usuário ganha 5 imagens para
+        testar.
       </span>
     ),
   },
