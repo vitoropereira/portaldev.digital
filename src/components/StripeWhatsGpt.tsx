@@ -9,7 +9,7 @@ const StripePage = () => {
       </Head>
 
       <stripe-pricing-table
-        pricing-table-id="prctbl_1OmcxdCuOWI61DOsSLVvNep7"
+        pricing-table-id="prctbl_1OwJp8CuOWI61DOseKNoKupq"
         publishable-key="pk_live_51HaZWRCuOWI61DOsDWhtkjbxjgClfSGylNewxkL0MBrdbI8ARcgyNvBhKRO0XpfR6B77SUhg9od5yIgT1UlYeo8300S7OG67vW"
       ></stripe-pricing-table>
     </>
